@@ -3,10 +3,12 @@ title: Benefits of Learning Physical AI & Humanoid Robotics
 authors: [physical-ai-team]
 tags: [physical-ai, humanoid-robotics, robotics, ai, education]
 description: Discover the transformative benefits of learning Physical AI and Humanoid Robotics in our comprehensive e-book course.
-image: /img/blog/physical-ai-humanoid-robotics.jpg
+image: /blog/ai-team.png
 ---
 
 # Benefits of Learning Physical AI & Humanoid Robotics
+
+![Benefits of Learning Physical AI & Humanoid Robotics](/img/blog/ai-team.png)
 
 In an era where artificial intelligence is reshaping industries, the convergence of AI with physical systems represents the next frontier of technological advancement. Our comprehensive e-book on Physical AI & Humanoid Robotics offers unparalleled insights into this exciting field, providing learners with the knowledge and skills to build the next generation of intelligent, embodied systems.
 

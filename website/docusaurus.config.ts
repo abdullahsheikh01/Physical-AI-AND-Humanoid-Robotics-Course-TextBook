@@ -14,6 +14,8 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
+  trailingSlash: true,
+
   // Set the production url of your site here
   url: 'https://physical-ai-humanoid-robotics-book.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -45,6 +47,8 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
         },
         blog: {
           showReadingTime: true,
@@ -68,17 +72,37 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-sitemap',
+      {
+        changefreq: 'weekly',
+        priority: 0.5,
+      },
+    ],
+  ],
+
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    metadata: [
+      {name: 'keywords', content: 'robotics, AI, physical AI, humanoid robots, ROS 2, Gazebo, Isaac, machine learning, computer vision, natural language processing'},
+      {name: 'author', content: 'Physical AI & Humanoid Robotics Team'},
+      {name: 'og:title', content: 'Physical AI & Humanoid Robotics E-book'},
+      {name: 'og:description', content: 'Learn how humanoid robots excel in our human-centered world through comprehensive modules on ROS 2, simulation, AI, and vision-language-action systems'},
+      {name: 'og:type', content: 'website'},
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {name: 'twitter:site', content: '@physicalairobotics'},
+    ],
     navbar: {
       title: 'Physical AI & Humanoid Robotics',
       logo: {
         alt: 'Physical AI & Humanoid Robotics Logo',
-        src: 'img/logo.svg',
+        src: 'img/hero-pic.png',
       },
       items: [
         {
@@ -89,7 +113,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/your-org/physical-ai-humanoid-robotics-ebook',
+          href: 'https://github.com/abdullahsheikh01/Physical-AI-AND-Humanoid-Robotics-Course-TextBook',
           label: 'GitHub',
           position: 'right',
         },
@@ -141,7 +165,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/your-org/physical-ai-humanoid-robotics-ebook',
+              href: 'https://github.com/abdullahsheikh01/Physical-AI-AND-Humanoid-Robotics-Course-TextBook',
             },
           ],
         },

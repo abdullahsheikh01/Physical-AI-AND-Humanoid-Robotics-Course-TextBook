@@ -917,16 +917,16 @@ class SystemMonitor:
 - **Command Understanding Rate**: >85%
 - **Navigation Success Rate**: >90%
 - **Manipulation Success Rate**: >75%
-- **Response Time**: <5 seconds
-- **Safety Violation Rate**: <1%
+- **Response Time**: < Five seconds
+- **Safety Violation Rate**: < One%
 
 ### Target Performance
 - **Voice Recognition Accuracy**: >95%
 - **Command Understanding Rate**: >95%
 - **Navigation Success Rate**: >95%
 - **Manipulation Success Rate**: >90%
-- **Response Time**: <3 seconds
-- **Safety Violation Rate**: <0.1%
+- **Response Time**: < Three seconds
+- **Safety Violation Rate**: < 0.1%
 
 ## Documentation and Handoff
 

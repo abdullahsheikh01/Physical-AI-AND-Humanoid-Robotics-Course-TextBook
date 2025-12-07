@@ -39,7 +39,7 @@ const RoboticFooter: React.FC = () => {
     {
       title: 'More',
       links: [
-        { label: 'GitHub', to: 'https://github.com/your-org/physical-ai-humanoid-robotics-ebook' },
+        { label: 'GitHub', to: 'https://github.com/abdullahsheikh01/Physical-AI-AND-Humanoid-Robotics-Course-TextBook' },
       ],
     },
   ];

@@ -1,0 +1,19 @@
+.tagCardLink {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.tagCardLink:hover {
+  color: var(--ifm-color-primary-dark);
+  text-decoration: underline;
+}
+
+.tagCount {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--ifm-color-secondary-darkest);
+  background-color: var(--ifm-color-emphasis-200);
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+}
