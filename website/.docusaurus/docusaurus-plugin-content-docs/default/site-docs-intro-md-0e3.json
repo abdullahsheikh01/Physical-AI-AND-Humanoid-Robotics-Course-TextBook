@@ -1,0 +1,26 @@
+{
+  "id": "intro",
+  "title": "intro",
+  "description": "",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/docs/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/intro.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055000,
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Why Physical AI Matters",
+    "permalink": "/docs/intro/why-physical-ai-matters"
+  },
+  "next": {
+    "title": "Weeks 1-2: Introduction to Physical AI",
+    "permalink": "/docs/weekly-breakdown/weeks-1-2"
+  }
+}

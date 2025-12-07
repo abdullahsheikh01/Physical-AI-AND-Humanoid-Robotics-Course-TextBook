@@ -1,0 +1,30 @@
+{
+  "id": "module-1/rclpy-bridge",
+  "title": "Bridging Python Agents to ROS Controllers using rclpy",
+  "description": "Learning Objectives",
+  "source": "@site/docs/module-1/rclpy-bridge.md",
+  "sourceDirName": "module-1",
+  "slug": "/module-1/rclpy-bridge",
+  "permalink": "/docs/module-1/rclpy-bridge",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-1/rclpy-bridge.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055000,
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "title": "Bridging Python Agents to ROS Controllers using rclpy"
+  },
+  "sidebar": "physicalAISidebar",
+  "previous": {
+    "title": "ROS 2 Nodes, Topics, and Services",
+    "permalink": "/docs/module-1/ros2-nodes-topics-services"
+  },
+  "next": {
+    "title": "Understanding URDF for Humanoids",
+    "permalink": "/docs/module-1/urdf-humanoids"
+  }
+}

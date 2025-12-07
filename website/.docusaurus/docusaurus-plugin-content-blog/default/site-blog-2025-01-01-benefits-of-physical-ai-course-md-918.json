@@ -1,0 +1,68 @@
+{
+  "permalink": "/blog/2025/01/01/benefits-of-physical-ai-course",
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2025-01-01-benefits-of-physical-ai-course.md",
+  "source": "@site/blog/2025-01-01-benefits-of-physical-ai-course.md",
+  "title": "Benefits of Learning Physical AI & Humanoid Robotics",
+  "description": "Discover the transformative benefits of learning Physical AI and Humanoid Robotics in our comprehensive e-book course.",
+  "date": "2025-01-01T00:00:00.000Z",
+  "tags": [
+    {
+      "inline": true,
+      "label": "physical-ai",
+      "permalink": "/blog/tags/physical-ai"
+    },
+    {
+      "inline": true,
+      "label": "humanoid-robotics",
+      "permalink": "/blog/tags/humanoid-robotics"
+    },
+    {
+      "inline": true,
+      "label": "robotics",
+      "permalink": "/blog/tags/robotics"
+    },
+    {
+      "inline": true,
+      "label": "ai",
+      "permalink": "/blog/tags/ai"
+    },
+    {
+      "inline": true,
+      "label": "education",
+      "permalink": "/blog/tags/education"
+    }
+  ],
+  "readingTime": 5.26,
+  "hasTruncateMarker": false,
+  "authors": [
+    {
+      "name": "Abdullah Shaikh",
+      "title": "Going to Expert in Physical AI and Robotics",
+      "url": "https://github.com/abdullahsheikh01",
+      "page": {
+        "permalink": "/blog/authors/physical-ai-team"
+      },
+      "socials": {
+        "github": "https://github.com/abdullahsheikh01"
+      },
+      "imageURL": "/img/authors/author-1.png",
+      "key": "physical-ai-team"
+    }
+  ],
+  "frontMatter": {
+    "title": "Benefits of Learning Physical AI & Humanoid Robotics",
+    "authors": [
+      "physical-ai-team"
+    ],
+    "tags": [
+      "physical-ai",
+      "humanoid-robotics",
+      "robotics",
+      "ai",
+      "education"
+    ],
+    "description": "Discover the transformative benefits of learning Physical AI and Humanoid Robotics in our comprehensive e-book course.",
+    "image": "/blog/ai-team.png"
+  },
+  "unlisted": false
+}

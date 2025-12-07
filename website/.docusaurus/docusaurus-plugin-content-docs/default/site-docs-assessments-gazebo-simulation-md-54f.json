@@ -1,0 +1,30 @@
+{
+  "id": "assessments/gazebo-simulation",
+  "title": "Gazebo Simulation Implementation",
+  "description": "Overview",
+  "source": "@site/docs/assessments/gazebo-simulation.md",
+  "sourceDirName": "assessments",
+  "slug": "/assessments/gazebo-simulation",
+  "permalink": "/docs/assessments/gazebo-simulation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/assessments/gazebo-simulation.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055000,
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "title": "Gazebo Simulation Implementation"
+  },
+  "sidebar": "physicalAISidebar",
+  "previous": {
+    "title": "ROS 2 Package Development Project",
+    "permalink": "/docs/assessments/ros2-project"
+  },
+  "next": {
+    "title": "Isaac-based Perception Pipeline",
+    "permalink": "/docs/assessments/isaac-perception"
+  }
+}

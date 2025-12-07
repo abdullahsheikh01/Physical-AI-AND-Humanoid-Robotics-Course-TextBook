@@ -1,0 +1,204 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "module-1/index",
+          "docs": [
+            {
+              "id": "assessments/capstone-humanoid",
+              "path": "/docs/assessments/capstone-humanoid",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "assessments/gazebo-simulation",
+              "path": "/docs/assessments/gazebo-simulation",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "assessments/intro",
+              "path": "/docs/assessments/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "assessments/isaac-perception",
+              "path": "/docs/assessments/isaac-perception",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "assessments/ros2-project",
+              "path": "/docs/assessments/ros2-project",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "guidelines/content-creation-guidelines",
+              "path": "/docs/guidelines/content-creation-guidelines",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro/why-physical-ai-matters",
+              "path": "/docs/intro/why-physical-ai-matters",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-1/index",
+              "path": "/docs/module-1/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-1/intro",
+              "path": "/docs/module-1/intro",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-1/rclpy-bridge",
+              "path": "/docs/module-1/rclpy-bridge",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-1/ros2-nodes-topics-services",
+              "path": "/docs/module-1/ros2-nodes-topics-services",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-1/urdf-humanoids",
+              "path": "/docs/module-1/urdf-humanoids",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-2/gazebo-physics-collisions",
+              "path": "/docs/module-2/gazebo-physics-collisions",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-2/index",
+              "path": "/docs/module-2/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-2/intro",
+              "path": "/docs/module-2/intro",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-2/sensor-simulation",
+              "path": "/docs/module-2/sensor-simulation",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-2/unity-rendering-interaction",
+              "path": "/docs/module-2/unity-rendering-interaction",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-3/index",
+              "path": "/docs/module-3/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-3/intro",
+              "path": "/docs/module-3/intro",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-3/isaac-ros",
+              "path": "/docs/module-3/isaac-ros",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-3/isaac-sim",
+              "path": "/docs/module-3/isaac-sim",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-3/nav2-bipedal",
+              "path": "/docs/module-3/nav2-bipedal",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-4/capstone-project",
+              "path": "/docs/module-4/capstone-project",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-4/cognitive-planning",
+              "path": "/docs/module-4/cognitive-planning",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-4/index",
+              "path": "/docs/module-4/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-4/intro",
+              "path": "/docs/module-4/intro",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-4/voice-to-action",
+              "path": "/docs/module-4/voice-to-action",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "weekly-breakdown/week-13",
+              "path": "/docs/weekly-breakdown/week-13",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "weekly-breakdown/weeks-1-2",
+              "path": "/docs/weekly-breakdown/weeks-1-2",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "weekly-breakdown/weeks-11-12",
+              "path": "/docs/weekly-breakdown/weeks-11-12",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "weekly-breakdown/weeks-3-5",
+              "path": "/docs/weekly-breakdown/weeks-3-5",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "weekly-breakdown/weeks-6-7",
+              "path": "/docs/weekly-breakdown/weeks-6-7",
+              "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "weekly-breakdown/weeks-8-10",
+              "path": "/docs/weekly-breakdown/weeks-8-10",
+              "sidebar": "physicalAISidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/module-1/",
+                "label": "Module 1 - The Robotic Nervous System (ROS 2)"
+              }
+            },
+            "physicalAISidebar": {
+              "link": {
+                "path": "/docs/intro/why-physical-ai-matters",
+                "label": "intro/why-physical-ai-matters"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

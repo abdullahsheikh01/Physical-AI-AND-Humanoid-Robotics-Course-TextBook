@@ -1,0 +1,30 @@
+{
+  "id": "module-4/cognitive-planning",
+  "title": "Cognitive Planning: Using LLMs to Translate Natural Language into ROS 2 Actions",
+  "description": "Learning Objectives",
+  "source": "@site/docs/module-4/cognitive-planning.md",
+  "sourceDirName": "module-4",
+  "slug": "/module-4/cognitive-planning",
+  "permalink": "/docs/module-4/cognitive-planning",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-4/cognitive-planning.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055000,
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "title": "Cognitive Planning: Using LLMs to Translate Natural Language into ROS 2 Actions"
+  },
+  "sidebar": "physicalAISidebar",
+  "previous": {
+    "title": "Voice-to-Action: Using OpenAI Whisper for Voice Commands",
+    "permalink": "/docs/module-4/voice-to-action"
+  },
+  "next": {
+    "title": "Capstone Project: The Autonomous Humanoid",
+    "permalink": "/docs/module-4/capstone-project"
+  }
+}

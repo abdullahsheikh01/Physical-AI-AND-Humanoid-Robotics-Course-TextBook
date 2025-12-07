@@ -1,0 +1,30 @@
+{
+  "id": "weekly-breakdown/weeks-3-5",
+  "title": "Weeks 3-5: ROS 2 Fundamentals",
+  "description": "Learning Objectives",
+  "source": "@site/docs/weekly-breakdown/weeks-3-5.md",
+  "sourceDirName": "weekly-breakdown",
+  "slug": "/weekly-breakdown/weeks-3-5",
+  "permalink": "/docs/weekly-breakdown/weeks-3-5",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/weekly-breakdown/weeks-3-5.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055000,
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "Weeks 3-5: ROS 2 Fundamentals"
+  },
+  "sidebar": "physicalAISidebar",
+  "previous": {
+    "title": "Weeks 1-2: Introduction to Physical AI",
+    "permalink": "/docs/weekly-breakdown/weeks-1-2"
+  },
+  "next": {
+    "title": "Weeks 6-7: Robot Simulation with Gazebo",
+    "permalink": "/docs/weekly-breakdown/weeks-6-7"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "intro/why-physical-ai-matters",
+  "title": "Why Physical AI Matters",
+  "description": "Humanoid robots are poised to excel in our human-centered world because they share our physical form and can be trained with abundant data from interacting in human environments. This represents a significant transition from AI models confined to digital environments to embodied intelligence that operates in physical space.",
+  "source": "@site/docs/intro/why-physical-ai-matters.md",
+  "sourceDirName": "intro",
+  "slug": "/intro/why-physical-ai-matters",
+  "permalink": "/docs/intro/why-physical-ai-matters",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/intro/why-physical-ai-matters.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055000,
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "Why Physical AI Matters"
+  },
+  "sidebar": "physicalAISidebar",
+  "next": {
+    "title": "Weeks 1-2: Introduction to Physical AI",
+    "permalink": "/docs/weekly-breakdown/weeks-1-2"
+  }
+}

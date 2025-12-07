@@ -1,0 +1,26 @@
+{
+  "id": "assessments/capstone-humanoid",
+  "title": "Capstone: Simulated Humanoid Robot with Conversational AI",
+  "description": "Overview",
+  "source": "@site/docs/assessments/capstone-humanoid.md",
+  "sourceDirName": "assessments",
+  "slug": "/assessments/capstone-humanoid",
+  "permalink": "/docs/assessments/capstone-humanoid",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/assessments/capstone-humanoid.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055000,
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "title": "Capstone: Simulated Humanoid Robot with Conversational AI"
+  },
+  "sidebar": "physicalAISidebar",
+  "previous": {
+    "title": "Isaac-based Perception Pipeline",
+    "permalink": "/docs/assessments/isaac-perception"
+  }
+}
