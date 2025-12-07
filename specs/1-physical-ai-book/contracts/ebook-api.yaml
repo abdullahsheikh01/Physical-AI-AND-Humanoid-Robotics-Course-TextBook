@@ -1,0 +1,176 @@
+# API Contract: Physical AI & Humanoid Robotics E-book
+
+## Overview
+This document defines the API contracts for any backend services that may support the Physical AI & Humanoid Robotics E-book. Since this is primarily a static documentation site, the API contracts are minimal but may include features like assessment tracking, user progress, or interactive elements.
+
+## Base URL
+```
+https://api.physical-ai-book.com/v1
+```
+
+## Content API
+
+### Get Module Content
+```
+GET /modules/{moduleId}
+```
+
+**Description**: Retrieve content for a specific module
+
+**Path Parameters**:
+- `moduleId`: string - The ID of the module (module-1, module-2, module-3, module-4)
+
+**Response**:
+```json
+{
+  "id": "module-1",
+  "title": "The Robotic Nervous System (ROS 2)",
+  "description": "Focus: Middleware for robot control...",
+  "content": "...",
+  "learningObjectives": [
+    "Understand ROS 2 Nodes, Topics, and Services",
+    "Bridge Python Agents to ROS controllers using rclpy",
+    "Understand URDF for humanoids"
+  ],
+  "weeks": ["week-3", "week-4", "week-5"],
+  "assessments": [
+    {
+      "id": "assessment-1",
+      "title": "ROS 2 package development project",
+      "type": "project",
+      "requirements": ["Create publisher", "Create subscriber", "Implement service"]
+    }
+  ]
+}
+```
+
+### Get Weekly Content
+```
+GET /weeks/{weekId}
+```
+
+**Description**: Retrieve content for a specific week
+
+**Path Parameters**:
+- `weekId`: string - The ID of the week (week-1, week-2, ..., week-13)
+
+**Response**:
+```json
+{
+  "id": "week-3",
+  "title": "ROS 2 Fundamentals",
+  "weekNumber": 3,
+  "content": "...",
+  "learningObjectives": [
+    "Understand ROS 2 architecture and core concepts",
+    "Build ROS 2 packages with Python"
+  ],
+  "module": "module-1",
+  "duration": "1 week",
+  "relatedTopics": ["nodes", "topics", "services"]
+}
+```
+
+## Assessment API
+
+### Submit Assessment
+```
+POST /assessments/{assessmentId}/submit
+```
+
+**Description**: Submit an assessment for evaluation
+
+**Path Parameters**:
+- `assessmentId`: string - The ID of the assessment
+
+**Request Body**:
+```json
+{
+  "userId": "string",
+  "submission": "string",
+  "files": ["fileId1", "fileId2"],
+  "metadata": {
+    "timeSpent": "integer",
+    "resourcesUsed": ["resource1", "resource2"]
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "id": "submission-123",
+  "assessmentId": "assessment-1",
+  "userId": "user-456",
+  "status": "pending|graded|needs-improvement",
+  "submittedAt": "timestamp",
+  "gradedAt": "timestamp|null",
+  "score": "integer|null",
+  "feedback": "string|null"
+}
+```
+
+## User Progress API
+
+### Get User Progress
+```
+GET /users/{userId}/progress
+```
+
+**Description**: Retrieve user's progress through the e-book
+
+**Path Parameters**:
+- `userId`: string - The ID of the user
+
+**Response**:
+```json
+{
+  "userId": "user-456",
+  "modulesCompleted": ["module-1"],
+  "currentModule": "module-2",
+  "currentWeek": "week-6",
+  "assessmentsCompleted": ["assessment-1"],
+  "totalProgress": 0.25,
+  "timeSpent": "integer",
+  "lastAccessed": "timestamp"
+}
+```
+
+### Update User Progress
+```
+PUT /users/{userId}/progress
+```
+
+**Description**: Update user's progress in the e-book
+
+**Path Parameters**:
+- `userId`: string - The ID of the user
+
+**Request Body**:
+```json
+{
+  "currentModule": "string",
+  "currentWeek": "string",
+  "completedContent": ["contentId1", "contentId2"],
+  "timeSpent": "integer"
+}
+```
+
+## Error Response Format
+All error responses follow this format:
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "details": "object|null"
+  }
+}
+```
+
+## Common Error Codes
+- `NOT_FOUND`: Resource does not exist
+- `UNAUTHORIZED`: User not authenticated
+- `FORBIDDEN`: User not authorized for this action
+- `VALIDATION_ERROR`: Request data validation failed
+- `INTERNAL_ERROR`: Server-side error occurred
