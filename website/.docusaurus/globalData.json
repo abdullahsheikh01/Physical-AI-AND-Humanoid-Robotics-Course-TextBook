@@ -8,7 +8,7 @@
           "label": "Next",
           "isLast": true,
           "path": "/docs",
-          "mainDocId": "module-1/index",
+          "mainDocId": "assessments/index",
           "docs": [
             {
               "id": "assessments/capstone-humanoid",
@@ -19,6 +19,11 @@
               "id": "assessments/gazebo-simulation",
               "path": "/docs/assessments/gazebo-simulation",
               "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "assessments/index",
+              "path": "/docs/assessments/",
+              "sidebar": "tutorialSidebar"
             },
             {
               "id": "assessments/intro",
@@ -49,6 +54,11 @@
               "id": "intro/why-physical-ai-matters",
               "path": "/docs/intro/why-physical-ai-matters",
               "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-1/hands-on-examples",
+              "path": "/docs/module-1/hands-on-examples",
+              "sidebar": "tutorialSidebar"
             },
             {
               "id": "module-1/index",
@@ -96,9 +106,19 @@
               "sidebar": "physicalAISidebar"
             },
             {
+              "id": "module-2/sim-to-real",
+              "path": "/docs/module-2/sim-to-real",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "module-2/unity-rendering-interaction",
               "path": "/docs/module-2/unity-rendering-interaction",
               "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "module-3/ai-control",
+              "path": "/docs/module-3/ai-control",
+              "sidebar": "tutorialSidebar"
             },
             {
               "id": "module-3/index",
@@ -146,9 +166,19 @@
               "sidebar": "physicalAISidebar"
             },
             {
+              "id": "module-4/multimodal-integration",
+              "path": "/docs/module-4/multimodal-integration",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "module-4/voice-to-action",
               "path": "/docs/module-4/voice-to-action",
               "sidebar": "physicalAISidebar"
+            },
+            {
+              "id": "weekly-breakdown/index",
+              "path": "/docs/weekly-breakdown/",
+              "sidebar": "tutorialSidebar"
             },
             {
               "id": "weekly-breakdown/week-13",
@@ -185,8 +215,8 @@
           "sidebars": {
             "tutorialSidebar": {
               "link": {
-                "path": "/docs/module-1/",
-                "label": "Module 1 - The Robotic Nervous System (ROS 2)"
+                "path": "/docs/assessments/",
+                "label": "Assessments"
               }
             },
             "physicalAISidebar": {

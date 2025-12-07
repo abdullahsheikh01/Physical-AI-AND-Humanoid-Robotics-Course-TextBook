@@ -17,7 +17,7 @@ const config: Config = {
   trailingSlash: true,
 
   // Set the production url of your site here
-  url: 'https://physical-ai-humanoid-robotics-book.example.com',
+  url: 'https://physical-ai-and-humanoid-robotics-textbook-6601-pw0v70cno.vercel.app/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -47,8 +47,8 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          showLastUpdateTime: true,
-          showLastUpdateAuthor: true,
+          showLastUpdateTime: false,
+          showLastUpdateAuthor: false,
         },
         blog: {
           showReadingTime: true,
@@ -72,15 +72,6 @@ const config: Config = {
     ],
   ],
 
-  plugins: [
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        changefreq: 'weekly',
-        priority: 0.5,
-      },
-    ],
-  ],
 
 
   themeConfig: {

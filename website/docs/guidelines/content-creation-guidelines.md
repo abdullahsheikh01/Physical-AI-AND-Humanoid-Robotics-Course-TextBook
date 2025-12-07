@@ -173,7 +173,7 @@ Use relative paths for internal links:
 
 ```markdown
 [Module 1: The Robotic Nervous System (ROS 2)](/docs/module-1/intro)
-[Weeks 1-2: Introduction to Physical AI](/docs/weekly-breakdown/weeks-1-2.md)
+[Weeks 1-2: Introduction to Physical AI](/docs/weekly-breakdown/weeks-1-2)
 ```
 
 ### Navigation
@@ -266,4 +266,4 @@ If you have questions about content creation, contact the course maintainers or 
 
 ---
 
-*Last updated: {DATE_ISO}*
+*Last updated: 2025-12-07*

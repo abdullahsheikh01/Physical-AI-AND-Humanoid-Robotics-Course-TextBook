@@ -56,4 +56,4 @@ After completing this introduction, you should be able to:
 
 ---
 
-**Next**: [Module 1: The Robotic Nervous System (ROS 2)](/docs/module-1/index)
+**Next**: [Module 1: The Robotic Nervous System (ROS 2)](/docs/module-1/)

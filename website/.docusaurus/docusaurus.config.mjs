@@ -49,8 +49,8 @@ export default {
         "docs": {
           "sidebarPath": "./sidebars.ts",
           "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-          "showLastUpdateTime": true,
-          "showLastUpdateAuthor": true
+          "showLastUpdateTime": false,
+          "showLastUpdateAuthor": false
         },
         "blog": {
           "showReadingTime": true,
@@ -69,15 +69,6 @@ export default {
         "theme": {
           "customCss": "./src/css/custom.css"
         }
-      }
-    ]
-  ],
-  "plugins": [
-    [
-      "@docusaurus/plugin-sitemap",
-      {
-        "changefreq": "weekly",
-        "priority": 0.5
       }
     ]
   ],
@@ -425,6 +416,7 @@ export default {
     "static"
   ],
   "customFields": {},
+  "plugins": [],
   "themes": [],
   "scripts": [],
   "headTags": [],

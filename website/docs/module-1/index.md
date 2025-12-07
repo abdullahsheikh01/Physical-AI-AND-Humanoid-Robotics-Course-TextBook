@@ -21,7 +21,7 @@ By the end of this module, you will be able to:
 
 This module is organized into the following sections:
 1. [ROS 2 Nodes, Topics, and Services](./ros2-nodes-topics-services.md)
-2. [Bridging Python Agents to ROS controllers using rclpy](./bridging-python-agents-ros.md)
+2. [Bridging Python Agents to ROS controllers using rclpy](./rclpy-bridge.md)
 3. [Understanding URDF (Unified Robot Description Format) for humanoids](./urdf-humanoids.md)
 
 ## What is ROS 2?
@@ -56,4 +56,4 @@ After completing this module, you will complete the **ROS 2 package development 
 
 ---
 
-**Continue**: [ROS 2 Nodes, Topics, and Services](./ros2-nodes-topics-services.md) | **Next Module**: [Module 2: The Digital Twin (Gazebo & Unity)](/docs/module-2/index)
+**Continue**: [ROS 2 Nodes, Topics, and Services](./ros2-nodes-topics-services.md) | **Next Module**: [Module 2: The Digital Twin (Gazebo & Unity)](/docs/module-2/)

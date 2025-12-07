@@ -17,3 +17,28 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+physical-ai:
+  label: Physical AI
+  permalink: /physical-ai
+  description: Content related to Physical AI concepts and implementations
+
+humanoid-robotics:
+  label: Humanoid Robotics
+  permalink: /humanoid-robotics
+  description: Content about humanoid robots and their applications
+
+robotics:
+  label: Robotics
+  permalink: /robotics
+  description: General robotics content and concepts
+
+ai:
+  label: Artificial Intelligence
+  permalink: /ai
+  description: Content about artificial intelligence in robotics
+
+education:
+  label: Education
+  permalink: /education
+  description: Educational content and learning resources

@@ -4,7 +4,7 @@ Sync Impact Report:
 - Modified principles: Added new principles for chatbot feature
 - Added sections: Chatbot Widget Component, Agentic Backend Logic, FastAPI Integration
 - Removed sections: None
-- Templates requiring updates: ✅ updated - .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
+- Templates requiring updates: ⚠ pending - .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
 - Follow-up TODOs: None
 -->
 

@@ -3,7 +3,7 @@ node_modules/
 
 # Docusaurus build output
 website/build/
-
+website/.docusaurus/
 
 # Environment variables
 .env*

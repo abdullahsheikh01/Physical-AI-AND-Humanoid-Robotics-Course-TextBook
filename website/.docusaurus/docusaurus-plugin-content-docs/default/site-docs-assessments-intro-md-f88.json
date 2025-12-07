@@ -11,8 +11,6 @@
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/assessments/intro.md",
   "tags": [],
   "version": "current",
-  "lastUpdatedBy": "Author",
-  "lastUpdatedAt": 1539502055000,
   "sidebarPosition": 1,
   "frontMatter": {
     "sidebar_position": 1,
@@ -20,8 +18,8 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Capstone Project: The Autonomous Humanoid",
-    "permalink": "/docs/module-4/capstone-project"
+    "title": "Assessments",
+    "permalink": "/docs/assessments/"
   },
   "next": {
     "title": "ROS 2 Package Development Project",

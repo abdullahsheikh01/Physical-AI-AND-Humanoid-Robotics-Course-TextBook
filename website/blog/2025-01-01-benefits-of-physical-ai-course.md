@@ -12,6 +12,8 @@ image: /blog/ai-team.png
 
 In an era where artificial intelligence is reshaping industries, the convergence of AI with physical systems represents the next frontier of technological advancement. Our comprehensive e-book on Physical AI & Humanoid Robotics offers unparalleled insights into this exciting field, providing learners with the knowledge and skills to build the next generation of intelligent, embodied systems.
 
+<!-- truncate -->
+
 ## Why Physical AI Matters
 
 Physical AI represents a paradigm shift from traditional digital AI systems to embodied intelligence that operates in the physical world. This approach is crucial for creating robots that can effectively interact with human-centered environments, as they share our physical form and can be trained with abundant data from interacting in human spaces.

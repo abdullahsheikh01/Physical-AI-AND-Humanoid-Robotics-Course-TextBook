@@ -20,8 +20,8 @@ By the end of this module, you will be able to:
 ## Module Structure
 
 This module is organized into the following sections:
-1. [Gazebo Simulation](./gazebo-simulation.md)
-2. [Unity Visualization](./unity-visualization.md)
+1. [Gazebo Simulation](./gazebo-physics-collisions.md)
+2. [Unity Visualization](./unity-rendering-interaction.md)
 3. [Sensor Simulation](./sensor-simulation.md)
 
 ## What is a Digital Twin?
@@ -64,4 +64,4 @@ After completing this module, you will complete the **Gazebo simulation implemen
 
 ---
 
-**Continue**: [Gazebo Simulation](./gazebo-simulation.md) | **Next Module**: [Module 3: The AI-Robot Brain (NVIDIA Isaac™)](/docs/module-3/index)
+**Continue**: [Gazebo Simulation](./gazebo-physics-collisions.md) | **Next Module**: [Module 3: The AI-Robot Brain (NVIDIA Isaac™)](/docs/module-3/)

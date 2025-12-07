@@ -7,33 +7,38 @@
   "date": "2025-01-01T00:00:00.000Z",
   "tags": [
     {
-      "inline": true,
-      "label": "physical-ai",
-      "permalink": "/blog/tags/physical-ai"
+      "inline": false,
+      "label": "Physical AI",
+      "permalink": "/blog/tags/physical-ai",
+      "description": "Content related to Physical AI concepts and implementations"
     },
     {
-      "inline": true,
-      "label": "humanoid-robotics",
-      "permalink": "/blog/tags/humanoid-robotics"
+      "inline": false,
+      "label": "Humanoid Robotics",
+      "permalink": "/blog/tags/humanoid-robotics",
+      "description": "Content about humanoid robots and their applications"
     },
     {
-      "inline": true,
-      "label": "robotics",
-      "permalink": "/blog/tags/robotics"
+      "inline": false,
+      "label": "Robotics",
+      "permalink": "/blog/tags/robotics",
+      "description": "General robotics content and concepts"
     },
     {
-      "inline": true,
-      "label": "ai",
-      "permalink": "/blog/tags/ai"
+      "inline": false,
+      "label": "Artificial Intelligence",
+      "permalink": "/blog/tags/ai",
+      "description": "Content about artificial intelligence in robotics"
     },
     {
-      "inline": true,
-      "label": "education",
-      "permalink": "/blog/tags/education"
+      "inline": false,
+      "label": "Education",
+      "permalink": "/blog/tags/education",
+      "description": "Educational content and learning resources"
     }
   ],
-  "readingTime": 5.26,
-  "hasTruncateMarker": false,
+  "readingTime": 5.27,
+  "hasTruncateMarker": true,
   "authors": [
     {
       "name": "Abdullah Shaikh",

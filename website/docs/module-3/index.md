@@ -22,7 +22,7 @@ By the end of this module, you will be able to:
 This module is organized into the following sections:
 1. [Isaac Sim](./isaac-sim.md)
 2. [Isaac ROS](./isaac-ros.md)
-3. [Nav2 Path Planning](./nav2-path-planning.md)
+3. [Nav2 Path Planning](./nav2-bipedal.md)
 
 ## What is NVIDIA Isaac?
 
@@ -73,4 +73,4 @@ After completing this module, you will complete the **Isaac-based perception pip
 
 ---
 
-**Continue**: [Isaac Sim](./isaac-sim.md) | **Next Module**: [Module 4: Vision-Language-Action (VLA)](/docs/module-4/index)
+**Continue**: [Isaac Sim](./isaac-sim.md) | **Next Module**: [Module 4: Vision-Language-Action (VLA)](/docs/module-4/)

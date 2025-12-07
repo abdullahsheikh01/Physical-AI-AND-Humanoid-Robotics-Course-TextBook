@@ -76,4 +76,4 @@ After completing this module, you will complete the **capstone project: Simulate
 
 ---
 
-**Continue**: [Voice-to-Action](./voice-to-action.md) | **Previous Module**: [Module 3: The AI-Robot Brain (NVIDIA Isaac™)](/docs/module-3/index)
+**Continue**: [Voice-to-Action](./voice-to-action.md) | **Previous Module**: [Module 3: The AI-Robot Brain (NVIDIA Isaac™)](/docs/module-3/)
