@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:\\Users\\Dell\\documents\\quarter_4_hackathons\\Physical-AI-AND-Humanoid-Robotics-TextBook\\website\\docs\\module-2\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -83,19 +83,9 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'physicalAISidebar',
           position: 'left',
-          label: 'Modules',
-        },
-        {
-          to: '/docs/weekly-breakdown',
-          label: 'Weekly Path',
-          position: 'left',
-        },
-        {
-          to: '/docs/assessments',
-          label: 'Assessments',
-          position: 'left',
+          label: 'E-book',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
