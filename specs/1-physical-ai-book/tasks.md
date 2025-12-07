@@ -32,13 +32,13 @@ This document outlines the implementation tasks for building the Physical AI & H
 ### Goal
 Initialize the Docusaurus project with required configuration and basic structure.
 
-- [ ] T001 Create website directory structure according to implementation plan
-- [ ] T002 Initialize Docusaurus project with `npx create-docusaurus@latest website classic`
-- [ ] T003 Configure package.json with project metadata and dependencies
-- [ ] T004 Set up basic docusaurus.config.js with required navigation items
-- [ ] T005 Create initial directory structure: blog/, docs/, src/, static/
-- [ ] T006 Configure Babel for CSS Modules support
-- [ ] T007 Set up basic CSS Modules configuration in babel.config.js
+- [x] T001 Create website directory structure according to implementation plan
+- [x] T002 Initialize Docusaurus project with `npx create-docusaurus@latest website classic`
+- [x] T003 Configure package.json with project metadata and dependencies
+- [x] T004 Set up basic docusaurus.config.js with required navigation items
+- [x] T005 Create initial directory structure: blog/, docs/, src/, static/
+- [x] T006 Configure Babel for CSS Modules support
+- [x] T007 Set up basic CSS Modules configuration in babel.config.js
 
 ---
 
@@ -47,13 +47,13 @@ Initialize the Docusaurus project with required configuration and basic structur
 ### Goal
 Implement core components and styling that will be used across all user stories.
 
-- [ ] T008 [P] Create basic CSS Modules configuration and global styles
-- [ ] T009 [P] Implement robotic-themed styling with CSS Modules
-- [ ] T010 [P] Create responsive footer component with CSS Modules
-- [ ] T011 [P] Implement dark/light mode toggle component using Docusaurus theme API
-- [ ] T012 [P] Create base layout components with CSS Modules
-- [ ] T013 [P] Set up navigation structure in sidebars.js
-- [ ] T014 [P] Remove default Docusaurus links and customize navigation
+- [x] T008 [P] Create basic CSS Modules configuration and global styles
+- [x] T009 [P] Implement robotic-themed styling with CSS Modules
+- [x] T010 [P] Create responsive footer component with CSS Modules
+- [x] T011 [P] Implement dark/light mode toggle component using Docusaurus theme API
+- [x] T012 [P] Create base layout components with CSS Modules
+- [x] T013 [P] Set up navigation structure in sidebars.js
+- [x] T014 [P] Remove default Docusaurus links and customize navigation
 
 ---
 
@@ -64,13 +64,13 @@ Enable users to access the main "Why Physical AI Matters" page and navigate thro
 
 **Independent Test Criteria**: Users can visit the main page and access content explaining why Physical AI matters, then navigate to basic module information.
 
-- [ ] T015 [US1] Create "Why Physical AI Matters" main page in docs/intro/
-- [ ] T016 [US1] Implement basic module overview pages for all 4 modules
-- [ ] T017 [US1] Set up basic navigation to access module content
-- [ ] T018 [US1] Add introductory content explaining Physical AI concepts
-- [ ] T019 [US1] Create basic module structure in docs/module-1/, docs/module-2/, docs/module-3/, docs/module-4/
-- [ ] T020 [US1] Implement responsive design for main content pages
-- [ ] T021 [US1] Add basic learning objectives to each module overview
+- [x] T015 [US1] Create "Why Physical AI Matters" main page in docs/intro/
+- [x] T016 [US1] Implement basic module overview pages for all 4 modules
+- [x] T017 [US1] Set up basic navigation to access module content
+- [x] T018 [US1] Add introductory content explaining Physical AI concepts
+- [x] T019 [US1] Create basic module structure in docs/module-1/, docs/module-2/, docs/module-3/, docs/module-4/
+- [x] T020 [US1] Implement responsive design for main content pages
+- [x] T021 [US1] Add basic learning objectives to each module overview
 
 ---
 

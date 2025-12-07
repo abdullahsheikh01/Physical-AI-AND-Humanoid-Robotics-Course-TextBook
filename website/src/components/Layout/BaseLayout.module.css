@@ -1,0 +1,84 @@
+/**
+ * CSS Module for BaseLayout component
+ * Implements base layout with robotic theme
+ */
+
+.baseLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  transition: background-color var(--ifm-transition-fast) ease;
+}
+
+/* Main content area */
+.mainContent {
+  flex: 1;
+  padding: var(--robotic-spacing-lg) 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .baseLayout {
+    padding: 0;
+  }
+
+  .mainContent {
+    padding: var(--robotic-spacing-md) 0;
+  }
+}
+
+/* Module-specific layout */
+.moduleLayout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--robotic-spacing-md);
+}
+
+/* Assessment layout */
+.assessmentLayout {
+  background-color: var(--ifm-color-emphasis-100);
+  border-radius: 8px;
+  padding: var(--robotic-spacing-lg);
+  margin: var(--robotic-spacing-md) 0;
+}
+
+/* Weekly breakdown layout */
+.weeklyLayout {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: var(--robotic-spacing-md);
+  margin: var(--robotic-spacing-md) 0;
+}
+
+/* Content container */
+.contentContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--robotic-spacing-md);
+}
+
+/* Full width container */
+.fullWidthContainer {
+  width: 100%;
+  max-width: none;
+}
+
+/* Card layout */
+.cardLayout {
+  background-color: var(--ifm-background-surface-color);
+  border-radius: 8px;
+  padding: var(--robotic-spacing-lg);
+  margin: var(--robotic-spacing-md) 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .baseLayout {
+  background-color: var(--ifm-background-color);
+}
+
+[data-theme='dark'] .cardLayout {
+  background-color: var(--ifm-background-surface-color);
+}

@@ -1,0 +1,82 @@
+/**
+ * CSS Module for RoboticFooter component
+ * Implements responsive footer with robotic theme
+ */
+
+.footer {
+  background-color: var(--ifm-color-primary-darkest);
+  color: white;
+  padding: var(--robotic-spacing-xl) 0;
+  margin-top: auto;
+}
+
+.footerTitle {
+  color: var(--robotic-accent-blue);
+  font-size: var(--robotic-font-size-lg);
+  margin-bottom: var(--robotic-spacing-md);
+  border-bottom: 1px solid var(--robotic-accent-blue);
+  padding-bottom: var(--robotic-spacing-sm);
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLink {
+  color: #ddd;
+  text-decoration: none;
+  display: block;
+  margin-bottom: var(--robotic-spacing-sm);
+  transition: color 0.2s ease;
+}
+
+.footerLink:hover {
+  color: var(--robotic-accent-blue);
+  text-decoration: underline;
+}
+
+.footerLink.active {
+  color: var(--robotic-accent-green);
+  font-weight: bold;
+}
+
+.copyright {
+  margin-top: var(--robotic-spacing-xl);
+  padding-top: var(--robotic-spacing-md);
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  text-align: center;
+  color: #aaa;
+  font-size: var(--robotic-font-size-sm);
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .footer {
+    padding: var(--robotic-spacing-lg) 0;
+  }
+
+  .footerTitle {
+    font-size: var(--robotic-font-size-base);
+  }
+
+  .copyright {
+    font-size: var(--robotic-font-size-sm);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+  .footer {
+    padding: var(--robotic-spacing-md) 0;
+  }
+
+  .footerTitle {
+    margin-bottom: var(--robotic-spacing-sm);
+  }
+
+  .footerLink {
+    margin-bottom: calc(var(--robotic-spacing-sm) / 2);
+  }
+}

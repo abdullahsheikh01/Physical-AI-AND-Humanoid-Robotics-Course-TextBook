@@ -1,0 +1,82 @@
+/**
+ * CSS Module for ThemeToggle component
+ * Implements dark/light mode toggle with robotic theme
+ */
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+}
+
+.themeToggle:hover {
+  background-color: var(--ifm-color-emphasis-300);
+  transform: scale(1.1);
+}
+
+.themeToggle:focus {
+  outline: 2px solid var(--robotic-accent-blue);
+  outline-offset: 2px;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Adjust for navbar context */
+.navbar__item {
+  display: flex;
+  align-items: center;
+}
+
+.themeToggleHideOnScroll {
+  transition: transform var(--ifm-transition-fast) ease;
+}
+
+.themeToggleHideOnScroll.navbar-sidebar--show-more {
+  transform: translateY(0);
+}
+
+/* Dark mode specific styles */
+[data-theme='dark'] .themeToggle {
+  background-color: var(--ifm-color-emphasis-800);
+  color: var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .themeToggle:hover {
+  background-color: var(--ifm-color-emphasis-700);
+}
+
+/* Animation for theme switching */
+@keyframes themeSwitch {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.themeToggle:active {
+  animation: themeSwitch 0.2s ease;
+}

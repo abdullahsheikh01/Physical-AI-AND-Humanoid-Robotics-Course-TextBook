@@ -1,0 +1,189 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'); */
+
+/**
+ * Custom CSS for Physical AI & Humanoid Robotics E-book
+ *
+ * This file contains global styles and CSS custom properties
+ * that follow the robotic theme and support both light and dark modes.
+ */
+
+:root {
+  /* Robotic-themed color palette */
+  --ifm-color-primary: #2c3e50;
+  --ifm-color-primary-dark: #1a2530;
+  --ifm-color-primary-darker: #0d131a;
+  --ifm-color-primary-darkest: #05070a;
+  --ifm-color-primary-light: #3d5266;
+  --ifm-color-primary-lighter: #4d667a;
+  --ifm-color-primary-lightest: #5d7a8e;
+
+  /* Robotic accent colors */
+  --robotic-accent-blue: #0066cc;
+  --robotic-accent-green: #00cc66;
+  --robotic-accent-orange: #ff6600;
+  --robotic-accent-gray: #4a4a4a;
+
+  /* Spacing */
+  --robotic-spacing-sm: 0.5rem;
+  --robotic-spacing-md: 1rem;
+  --robotic-spacing-lg: 1.5rem;
+  --robotic-spacing-xl: 2rem;
+
+  /* Typography */
+  --robotic-font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --robotic-font-size-sm: 0.875rem;
+  --robotic-font-size-base: 1rem;
+  --robotic-font-size-lg: 1.125rem;
+  --robotic-font-size-xl: 1.25rem;
+  --robotic-font-size-2xl: 1.5rem;
+  --robotic-font-size-3xl: 1.875rem;
+  --robotic-font-size-4xl: 2.25rem;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode overrides */
+[data-theme='dark'] {
+  --ifm-color-primary: #4d667a;
+  --ifm-color-primary-dark: #3d5266;
+  --ifm-color-primary-darker: #2c3e50;
+  --ifm-color-primary-darkest: #1a2530;
+  --ifm-color-primary-light: #5d7a8e;
+  --ifm-color-primary-lighter: #6d8da2;
+  --ifm-color-primary-lightest: #7da0b6;
+
+  /* Dark mode robotic accent colors */
+  --robotic-accent-blue: #3399ff;
+  --robotic-accent-green: #33cc99;
+  --robotic-accent-orange: #ff9933;
+  --robotic-accent-gray: #b8b8b8;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Global robotic theme styles */
+body {
+  font-family: var(--robotic-font-family);
+  line-height: 1.6;
+}
+
+/* Robotic-themed headers */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+}
+
+/* Robotic-themed buttons and interactive elements */
+.button {
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.button--primary {
+  background-color: var(--robotic-accent-blue);
+  border-color: var(--robotic-accent-blue);
+}
+
+.button--primary:hover {
+  background-color: #0052a3;
+  border-color: #0052a3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.2);
+}
+
+/* Robotic-themed cards and content containers */
+.card {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom styling for code blocks */
+.code-block {
+  background-color: var(--ifm-color-emphasis-100) !important;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+/* Robotic-themed sidebar */
+.menu {
+  border-right: 1px solid var(--ifm-color-emphasis-300);
+}
+
+/* Robotic-themed navigation */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme='dark'] .navbar {
+  background-color: rgba(44, 62, 80, 0.95);
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .navbar {
+    background-color: var(--ifm-background-surface-color);
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--robotic-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Custom styles for module-specific content */
+.module-intro {
+  padding: var(--robotic-spacing-xl);
+  background-color: var(--ifm-color-emphasis-100);
+  border-left: 4px solid var(--robotic-accent-blue);
+  margin: var(--robotic-spacing-lg) 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.learning-objectives {
+  padding: var(--robotic-spacing-lg);
+  background-color: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  margin: var(--robotic-spacing-lg) 0;
+}
+
+.learning-objectives h3 {
+  margin-top: 0;
+  color: var(--robotic-accent-blue);
+}
+
+/* Assessment component styling */
+.assessment-container {
+  border: 2px solid var(--robotic-accent-green);
+  border-radius: 8px;
+  padding: var(--robotic-spacing-lg);
+  margin: var(--robotic-spacing-lg) 0;
+  background-color: rgba(0, 204, 102, 0.05);
+}
+
+/* Weekly breakdown styling */
+.weekly-breakdown {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: var(--robotic-spacing-md);
+  margin: var(--robotic-spacing-md) 0;
+}
+
+.weekly-breakdown h3 {
+  color: var(--robotic-accent-orange);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  padding-bottom: var(--robotic-spacing-sm);
+}
