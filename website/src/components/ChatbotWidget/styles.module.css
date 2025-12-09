@@ -1,0 +1,253 @@
+.chatbotContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.chatButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1061e4;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.chatButton:hover {
+  background: #0d4db3;
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.chatButton:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+.buttonText {
+  display: block;
+}
+
+.chatWindow {
+  width: 380px;
+  height: 500px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.chatWindow.open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.chatHeader {
+  background: #1061e4;
+  color: white;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatTitle {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.chatMessages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f9fafb;
+}
+
+.message {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.userMessage {
+  align-self: flex-end;
+}
+
+.userMessage .messageContent {
+  background: #1061e4;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 18px 4px 18px 18px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.agentMessage {
+  align-self: flex-start;
+}
+
+.agentMessage .messageContent {
+  background: white;
+  color: #374151;
+  padding: 10px 14px;
+  border-radius: 4px 18px 18px 18px;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.messageTimestamp {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 4px;
+  align-self: flex-end;
+}
+
+.typingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.typingIndicator span {
+  width: 8px;
+  height: 8px;
+  background: #9ca3af;
+  border-radius: 50%;
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typingIndicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typingIndicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+.chatInputArea {
+  padding: 12px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 8px;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  resize: none;
+  font-size: 14px;
+  font-family: inherit;
+  max-height: 100px;
+  min-height: 20px;
+  outline: none;
+}
+
+.chatInput:focus {
+  outline: 2px solid #4a90e2;
+  border-color: #4a90e2;
+}
+
+.sendButton {
+  background: #1061e4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.sendButton:hover:not(:disabled) {
+  background: #0d4db3;
+}
+
+.sendButton:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+}

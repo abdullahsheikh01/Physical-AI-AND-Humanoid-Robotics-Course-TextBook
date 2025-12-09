@@ -112,6 +112,49 @@ A user who has opened the chat interface can close it to return to browsing the 
 - **FR-014**: System MUST handle error conditions gracefully and provide user-friendly error messages
 - **FR-015**: System MUST support concurrent users without performance degradation
 
+### Backend Architecture Requirements
+
+#### Two-File Backend Structure
+
+The backend MUST consist of exactly two Python files with a clear separation of concerns:
+
+1. **FastAPI API Handler** (`backend/main.py` or similar)
+2. **AI Agent Module** (`backend/agent.py` or similar)
+
+#### FastAPI API Handler Requirements
+
+- **FR-BE-001**: The FastAPI file MUST handle HTTP requests from the frontend chatbot widget
+- **FR-BE-002**: The FastAPI file MUST accept user queries via POST requests in JSON format with the structure: `{ "query": "user's question", "conversation_id": "optional session identifier" }`
+- **FR-BE-003**: The FastAPI file MUST import and dynamically call the AI agent from the separate agent module
+- **FR-BE-004**: The FastAPI file MUST return responses to the frontend in JSON format with the structure: `{ "response": "generated answer", "conversation_id": "session identifier", "status": "success|error" }`
+- **FR-BE-005**: The FastAPI file MUST handle asynchronous requests to support streaming responses where applicable
+- **FR-BE-006**: The FastAPI file MUST include proper error handling with appropriate HTTP status codes (200, 400, 500, etc.)
+- **FR-BE-007**: The FastAPI file MUST validate incoming request parameters and sanitize user inputs
+- **FR-BE-008**: The FastAPI file MUST support CORS to allow frontend integration from the website domain
+- **FR-BE-009**: The FastAPI file MUST include a health check endpoint at `/health` returning service status
+- **FR-BE-010**: The FastAPI file MUST implement request logging for debugging and monitoring purposes
+
+#### AI Agent Module Requirements
+
+- **FR-BE-011**: The AI agent file MUST contain the OpenAI-compatible Gemini provider configuration using environment variables for API keys
+- **FR-BE-012**: The AI agent file MUST include Cohere embeddings setup for vector search with proper configuration management
+- **FR-BE-013**: The AI agent file MUST establish and maintain Qdrant vector database connection with connection pooling if needed
+- **FR-BE-014**: The AI agent file MUST implement a `retrieve` tool function that performs semantic search and returns relevant context chunks
+- **FR-BE-015**: The AI agent file MUST contain the Agent and Runner execution logic with proper resource management
+- **FR-BE-016**: The AI agent file MUST use environment variables for all service credentials and connection parameters
+- **FR-BE-017**: The AI agent file MUST implement proper resource cleanup and connection management to prevent memory leaks
+- **FR-BE-018**: The AI agent file MUST support streaming responses using appropriate methods when available
+- **FR-BE-019**: The AI agent file MUST implement retry logic and circuit breaker patterns for external API calls
+- **FR-BE-020**: The AI agent file MUST include comprehensive error handling for all external services and fail gracefully
+
+#### Integration Requirements
+
+- **FR-BE-021**: The FastAPI file MUST import the agent function/class from the AI agent module using clean import statements
+- **FR-BE-022**: The FastAPI file MUST call the agent dynamically for each user query without maintaining agent state between requests
+- **FR-BE-023**: The AI agent module MUST be designed to be reusable and callable from the FastAPI handler without tight coupling
+- **FR-BE-024**: Both files MUST follow asynchronous patterns where appropriate to maintain non-blocking operations
+- **FR-BE-025**: Both files MUST implement proper separation of concerns with the FastAPI file handling HTTP concerns and the agent file handling AI logic
+
 ### Key Entities *(include if feature involves data)*
 
 - **User Query**: The text input from the user seeking information, containing their question or request
@@ -120,6 +163,9 @@ A user who has opened the chat interface can close it to return to browsing the 
 - **Retrieved Context Chunk**: A relevant segment of information retrieved from the knowledge base based on query similarity
 - **Generated Response**: The AI-generated answer created based on the user query and retrieved context
 - **Conversation Session**: The context of interaction between a user and the chatbot during a single engagement
+- **FastAPI Handler**: The HTTP request/response handler that processes frontend requests and returns JSON responses
+- **AI Agent**: The core logic module containing the LLM provider, embeddings, vector database connection, and response generation
+- **Environment Configuration**: The collection of API keys, service endpoints, and connection parameters loaded from environment variables
 
 ## Success Criteria *(mandatory)*
 
