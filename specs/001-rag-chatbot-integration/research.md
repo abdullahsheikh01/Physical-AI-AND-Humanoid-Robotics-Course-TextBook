@@ -1,26 +1,107 @@
-# Research Summary: RAG Chatbot Integration
+# Research Summary: RAG Chatbot Backend Implementation
 
-## Decision: Technology Stack Selection
-**Rationale**: Selected technology stack based on project requirements and specified technologies in the feature specification. The stack includes React for frontend, FastAPI for backend API, OpenAI Agents SDK for agentic behavior, Cohere for embeddings, Qdrant for vector storage, and Gemini for response generation.
+## Decision: Two-File Architecture with Supporting Modules
+- **Chosen Approach**: Two-file backend with FastAPI handler and AI agent module, plus supporting configuration, models, and utilities
+- **Rationale**: Maintains clean separation of concerns between HTTP handling and AI logic while providing necessary supporting infrastructure for production deployment
 
-## Decision: Architecture Pattern
-**Rationale**: Chose a web application architecture with separate frontend and backend to maintain clear separation of concerns. This allows for independent scaling and development of components while maintaining the required integration points.
+## Technology Stack Decisions
 
-## Decision: Streaming Implementation
-**Rationale**: Selected FastAPI's StreamingResponse with Server-Sent Events for response streaming to provide real-time, progressive response delivery to the user interface. This meets the requirement for streaming responses using the OpenAI Agents SDK's Runner.run_streamed method.
+### FastAPI for API Layer
+- **Decision**: Use FastAPI for HTTP handling with async support
+- **Rationale**: Provides automatic API documentation, type validation, async support, and high performance for AI API calls
+- **Alternatives considered**: Flask (rejected - less async support), Django (rejected - too heavy for API-only use case)
 
-## Decision: Vector Database Strategy
-**Rationale**: Qdrant was selected as the vector database as specified in the requirements. It provides efficient similarity search capabilities needed for the RAG pipeline to retrieve relevant context chunks based on Cohere-generated embeddings.
+### OpenAI Agents SDK with Gemini Compatibility
+- **Decision**: Use OpenAI Agents SDK with OpenAI-compatible Gemini API
+- **Rationale**: Provides agentic capabilities, tool usage, and memory management as required by spec
+- **Alternatives considered**: LangChain (rejected - different architecture pattern), LiteLLM (rejected - proxy approach vs native SDK)
 
-## Decision: Agent Implementation Approach
-**Rationale**: Implemented a custom agent using OpenAI Agents SDK Python that enforces context retrieval before response generation. This ensures the agent always has relevant information from the knowledge base before formulating responses, meeting the requirement for contextually relevant answers.
+### Cohere for Embeddings
+- **Decision**: Use Cohere API for text embeddings
+- **Rationale**: High-quality embeddings with good semantic search capabilities, well-documented API
+- **Alternatives considered**: OpenAI embeddings (rejected - want to use different provider for embeddings), Sentence Transformers (rejected - want managed service vs self-hosted model)
 
-## Decision: Frontend Integration Method
-**Rationale**: Designed the chatbot as a React component widget that integrates with the existing Docusaurus frontend. This approach maintains consistency with the existing codebase while providing the required "Ask me" button and chat interface functionality.
+### Qdrant for Vector Database
+- **Decision**: Use Qdrant vector database for knowledge base storage and retrieval
+- **Rationale**: Efficient similarity search, good Python client, supports both cloud and self-hosted options
+- **Alternatives considered**: Pinecone (rejected - more expensive), Weaviate (rejected - want Qdrant's feature set), FAISS (rejected - requires more infrastructure management)
 
-## Alternatives Considered:
-1. **Monolithic vs. Microservice Architecture**: Chose microservice (separate frontend/backend) over monolithic to allow independent scaling and maintenance of components
-2. **Different Vector Databases**: Evaluated Pinecone and Weaviate but selected Qdrant as it was specified in the requirements
-3. **Different Streaming Methods**: Compared WebSockets and Server-Sent Events, choosing SSE for its simplicity and compatibility with FastAPI
-4. **Alternative LLMs**: Gemini 2.0 Flash was specified in requirements, so no alternative was considered
-5. **Styling Approaches**: CSS Modules was required by project constitution, eliminating other styling options
+### Configuration Management
+- **Decision**: Use python-dotenv for environment management with Pydantic Settings
+- **Rationale**: Secure handling of API keys, type validation, and proper configuration management
+- **Alternatives considered**: Direct os.environ usage (rejected - no validation), custom config (rejected - reinventing standard solutions)
+
+## API Design Patterns
+
+### Request/Response Format
+- **Decision**: JSON-based API with consistent structure
+- **Request**: `{"query": "user question", "conversation_id": "optional session id"}`
+- **Response**: `{"response": "AI answer", "conversation_id": "session id", "status": "success|error"}`
+- **Rationale**: Simple, flexible, and supports conversation continuity as required by spec
+
+### Error Handling Strategy
+- **Decision**: Comprehensive error handling with appropriate HTTP status codes
+- **Rationale**: Provides clear feedback to frontend, maintains API reliability
+- **Approach**: Catch API errors, connection failures, and validation issues with graceful fallbacks
+
+### Streaming Implementation
+- **Decision**: Use FastAPI's StreamingResponse for progressive answer delivery
+- **Rationale**: Meets requirement for streaming responses to enhance user experience
+- **Implementation**: Will use async generators to stream tokens from agent
+
+### Retry and Circuit Breaker Patterns
+- **Decision**: Implement retry logic for external API calls with exponential backoff
+- **Rationale**: Handles temporary failures in external services (Gemini, Cohere, Qdrant)
+- **Implementation**: Will use tenacity library for retry logic
+
+## Infrastructure and Deployment Considerations
+
+### Environment Variables
+- **Decision**: Secure management of all API keys and configuration through environment variables
+- **Required Variables**:
+  - `GEMINI_API_KEY` for OpenAI-compatible Gemini access
+  - `COHERE_API_KEY` for embedding generation
+  - `QDRANT_URL` and `QDRANT_API_KEY` for vector database connection
+  - `QDRANT_COLLECTION_NAME` for specific collection reference
+
+### Testing Strategy
+- **Decision**: Comprehensive testing with unit tests for agent logic and integration tests for API
+- **Tools**: pytest with FastAPI TestClient
+- **Coverage**: API endpoint validation, agent response accuracy, error handling verification
+
+### Logging and Monitoring
+- **Decision**: Structured logging with appropriate levels for debugging and monitoring
+- **Implementation**: Python logging module with JSON formatting for production systems
+- **Focus Areas**: Request/response logging, performance metrics, error tracking
+
+## Dependencies and Requirements
+
+### Core Dependencies
+- fastapi: Web framework with async support
+- uvicorn: ASGI server for deployment
+- python-dotenv: Environment variable management
+- pydantic: Data validation and settings management
+- openai: OpenAI-compatible API access (for Gemini)
+- cohere: Embedding generation
+- qdrant-client: Vector database interaction
+- tenacity: Retry logic implementation
+- pytest: Testing framework
+- httpx: HTTP client for testing
+
+### Performance Considerations
+- Async implementation throughout to handle concurrent requests
+- Connection pooling for external services
+- Proper resource cleanup to prevent memory leaks
+- Caching strategies for frequently accessed data
+
+## Security Considerations
+
+### Input Validation
+- Strict validation of incoming requests using Pydantic models
+- Sanitization of user inputs to prevent injection attacks
+- Rate limiting to prevent abuse (to be implemented in later phase)
+
+### API Security
+- Secure handling of API keys through environment variables
+- No exposure of sensitive information in logs or responses
+- Proper authentication pattern (to be defined based on requirements)
