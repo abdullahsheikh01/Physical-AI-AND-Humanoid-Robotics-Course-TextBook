@@ -40,12 +40,12 @@ User stories must be completed in priority order (P1 before P2), but each story 
 ### Goal
 Set up the foundational project structure for both frontend and backend components, following the two-file backend architecture.
 
-- [ ] T001 Create backend directory structure per plan with two-file architecture (fastapi_app.py and agent_backend.py)
-- [ ] T002 Create backend requirements.txt with FastAPI, Cohere, Qdrant, OpenAI Agents SDK, and other dependencies
-- [ ] T003 Create frontend component directory structure per plan
-- [ ] T004 Set up basic FastAPI application in backend/fastapi_app.py following the two-file architecture requirement
-- [ ] T005 Create AI agent module in backend/agent_backend.py using OpenAI Agents SDK, following the two-file architecture requirement
-- [ ] T006 Set up environment variables for API keys and service configurations
+- [x] T001 Create backend directory structure per plan with two-file architecture (fastapi_app.py and agent_backend.py)
+- [x] T002 Create backend requirements.txt with FastAPI, Cohere, Qdrant, OpenAI Agents SDK, and other dependencies
+- [x] T003 Create frontend component directory structure per plan
+- [x] T004 Set up basic FastAPI application in backend/fastapi_app.py following the two-file architecture requirement
+- [x] T005 Create AI agent module in backend/agent_backend.py using OpenAI Agents SDK, following the two-file architecture requirement
+- [x] T006 Set up environment variables for API keys and service configurations
 
 ## Phase 2: User Story 1 - Access Chatbot Widget (P1)
 

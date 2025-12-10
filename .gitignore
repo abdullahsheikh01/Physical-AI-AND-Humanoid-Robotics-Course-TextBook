@@ -30,6 +30,13 @@ ENV/
 .env/
 .ENV/
 
+# FastAPI / Backend
+*.db
+*.db-journal
+uvicorn.pid
+.gunicorn.pid
+.asgi.pid
+
 # Docusaurus build output
 website/build/
 website/.docusaurus/

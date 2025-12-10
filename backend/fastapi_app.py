@@ -2,23 +2,18 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
-import uuid
-import logging
-from datetime import datetime
+import os
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
 
-# Import API routes
-from src.api.v1.chat import router as chat_router
-from src.api.v1.health import router as health_router
-from src.api.v1.embeddings import router as embeddings_router
+# Import the agent backend
+from agent_backend import RAGAgent
 
-# Initialize FastAPI app
 app = FastAPI(
     title="RAG Chatbot API",
-    description="API for the RAG Chatbot Integration with Physical AI & Humanoid Robotics E-book",
+    description="API for the Physical AI & Humanoid Robotics RAG Chatbot",
     version="1.0.0"
 )
 
@@ -31,113 +26,59 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include API routes
-app.include_router(chat_router)
-app.include_router(health_router)
-app.include_router(embeddings_router)
+# Pydantic models
+class Message(BaseModel):
+    role: str  # "user" or "assistant"
+    content: str
 
-# Additional legacy endpoints for compatibility
-from src.models.chat_models import UserQuery, GeneratedResponse
-from src.services.session_service import session_service
-from agent_backend import process_query, process_query_streamed_async
+class ChatRequest(BaseModel):
+    message: str
+    session_id: Optional[str] = None
+    history: Optional[List[Message]] = []
 
-
-class LegacyChatRequest(BaseModel):
-    query: str
-    conversation_id: Optional[str] = None
-    user_id: Optional[str] = None
-
-
-class SourceInfo(BaseModel):
-    doc_id: str
-    title: str
-    similarity_score: float
-
-
-class LegacyChatResponse(BaseModel):
+class ChatResponse(BaseModel):
     response: str
-    conversation_id: str
+    session_id: str
+    context: Optional[List[Dict[str, Any]]] = []
+
+class HealthResponse(BaseModel):
     status: str
-    sources: Optional[List[SourceInfo]] = None
+    version: str
 
+# Initialize the RAG agent
+rag_agent = RAGAgent()
 
-@app.post("/chat", response_model=LegacyChatResponse)
-async def legacy_chat_endpoint(request: LegacyChatRequest):
+@app.get("/", response_model=HealthResponse)
+async def root():
+    """Health check endpoint"""
+    return HealthResponse(status="healthy", version="1.0.0")
+
+@app.post("/chat", response_model=ChatResponse)
+async def chat_endpoint(request: ChatRequest):
     """
-    Legacy chat endpoint for backward compatibility
+    Chat endpoint that processes user queries and returns AI-generated responses
+    using RAG (Retrieval-Augmented Generation) approach.
     """
     try:
-        # Generate conversation ID if not provided
-        conversation_id = request.conversation_id or str(uuid.uuid4())
-
-        # Process the query using the agent
-        result = await process_query(request.query, conversation_id)
-
-        # Update session with the new interaction
-        session_service.update_session(
-            session_id=conversation_id,
-            query=request.query,
-            response=result.get("response", "")
+        # Process the chat request using the RAG agent
+        response = await rag_agent.process_query(
+            query=request.message,
+            session_id=request.session_id,
+            history=request.history
         )
 
-        return LegacyChatResponse(
-            response=result.get("response", ""),
-            conversation_id=conversation_id,
-            status=result.get("status", "success"),
-            sources=result.get("sources", [])
+        return ChatResponse(
+            response=response.response_text,
+            session_id=response.session_id,
+            context=response.context_chunks
         )
     except Exception as e:
-        logging.error(f"Error processing chat request: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-
-@app.get("/health")
-async def legacy_health_check():
-    """
-    Legacy health check endpoint for backward compatibility
-    """
-    # Redirect to the v1 health endpoint
-    from fastapi.responses import RedirectResponse
-    return RedirectResponse(url="/v1/health")
-
-
-from fastapi.responses import StreamingResponse
-import json
-
-# Streaming endpoint (for Phase 3 implementation)
-@app.post("/chat/stream")
-async def chat_stream_endpoint(request: LegacyChatRequest):
-    """
-    Process user queries and return AI-generated responses as a stream
-    """
-    async def event_generator():
-        conversation_id = request.conversation_id or str(uuid.uuid4())
-
-        try:
-            # Process the query using the async streaming agent
-            async for result in process_query_streamed_async(request.query, conversation_id):
-                # Update session with the new interaction if it's the final result
-                if result.get("status") == "complete":
-                    session_service.update_session(
-                        session_id=conversation_id,
-                        query=request.query,
-                        response=result.get("response", "")
-                    )
-
-                # Yield the result as JSON
-                yield f"data: {json.dumps(result)}\n\n"
-        except Exception as e:
-            error_result = {
-                "response": "I'm sorry, but I encountered an error while processing your query. Please try again.",
-                "conversation_id": conversation_id,
-                "status": "error",
-                "error": str(e),
-                "sources": []
-            }
-            yield f"data: {json.dumps(error_result)}\n\n"
-
-    return StreamingResponse(event_generator(), media_type="text/event-stream")
-
+@app.get("/health", response_model=HealthResponse)
+async def health_check():
+    """Health check endpoint"""
+    return HealthResponse(status="healthy", version="1.0.0")
 
 if __name__ == "__main__":
     import uvicorn
