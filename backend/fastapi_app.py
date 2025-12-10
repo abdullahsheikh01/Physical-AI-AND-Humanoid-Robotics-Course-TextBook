@@ -1,23 +1,59 @@
+"""
+FastAPI application for RAG Chatbot integration with Physical AI & Humanoid Robotics textbook.
+This module handles the API endpoints and connects to the agentic backend.
+"""
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
-import os
-from dotenv import load_dotenv
+import logging
+import datetime
 
-# Load environment variables
-load_dotenv()
+from agentic_backend import run_agent
 
-# Import the agent backend
-from agent_backend import RAGAgent
 
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+# Define request and response models for User Story 1
+class ChatRequest(BaseModel):
+    """
+    Request model for chat endpoint.
+    """
+    query: str
+    conversation_id: Optional[str] = None
+
+
+class ChatResponse(BaseModel):
+    """
+    Response model for chat endpoint.
+    """
+    response: str
+    conversation_id: Optional[str] = None
+    status: str
+    sources: Optional[List[Dict[str, Any]]] = []
+
+
+class HealthResponse(BaseModel):
+    """
+    Response model for health check endpoint.
+    """
+    status: str
+    timestamp: str
+    services: Dict[str, str]
+
+
+# Create FastAPI app instance
 app = FastAPI(
     title="RAG Chatbot API",
-    description="API for the Physical AI & Humanoid Robotics RAG Chatbot",
+    description="API for RAG Chatbot integration with Physical AI & Humanoid Robotics textbook",
     version="1.0.0"
 )
 
-# Add CORS middleware
+
+# Add CORS middleware to FastAPI application
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # In production, replace with specific origins
@@ -26,59 +62,58 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Pydantic models
-class Message(BaseModel):
-    role: str  # "user" or "assistant"
-    content: str
-
-class ChatRequest(BaseModel):
-    message: str
-    session_id: Optional[str] = None
-    history: Optional[List[Message]] = []
-
-class ChatResponse(BaseModel):
-    response: str
-    session_id: str
-    context: Optional[List[Dict[str, Any]]] = []
-
-class HealthResponse(BaseModel):
-    status: str
-    version: str
-
-# Initialize the RAG agent
-rag_agent = RAGAgent()
-
-@app.get("/", response_model=HealthResponse)
-async def root():
-    """Health check endpoint"""
-    return HealthResponse(status="healthy", version="1.0.0")
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat_endpoint(request: ChatRequest):
     """
-    Chat endpoint that processes user queries and returns AI-generated responses
-    using RAG (Retrieval-Augmented Generation) approach.
+    Create a FastAPI which receives input from frontend and give response
+    by using `agentic_backend`'s function `run_agent`.
     """
     try:
-        # Process the chat request using the RAG agent
-        response = await rag_agent.process_query(
-            query=request.message,
-            session_id=request.session_id,
-            history=request.history
-        )
+        # Log the incoming request
+        logger.info(f"Received chat request: {request.query[:50]}...")
+        print("I have Run!!!!")
+        
+        # Call the agentic backend's run_agent function
+        response = await run_agent(request.query)
 
+        # Create and return the response
         return ChatResponse(
-            response=response.response_text,
-            session_id=response.session_id,
-            context=response.context_chunks
+            response=response,
+            conversation_id=request.conversation_id,
+            status="success",
+            sources=[]  # Sources would be populated if available from the agent
         )
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error processing chat request: {str(e)}")
+        # Add error handling for chat endpoint
+        raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
+
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
-    """Health check endpoint"""
-    return HealthResponse(status="healthy", version="1.0.0")
+    """
+    Implement health check endpoint.
+    """
+    return HealthResponse(
+        status="healthy",
+        timestamp=datetime.datetime.now().isoformat(),
+        services={
+            "gemini": "unknown",  # Would check actual service status in production
+            "cohere": "unknown",
+            "qdrant": "unknown"
+        }
+    )
+
+
+# Additional endpoint implementations for User Story 1
+@app.get("/")
+async def root():
+    """
+    Root endpoint for basic service verification.
+    """
+    return {"message": "RAG Chatbot Backend API is running!"}
+
 
 if __name__ == "__main__":
     import uvicorn

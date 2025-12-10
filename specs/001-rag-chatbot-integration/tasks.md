@@ -1,222 +1,163 @@
-# Tasks: RAG Chatbot Integration
+---
+description: "Task list for RAG Chatbot Backend Implementation"
+---
 
-**Feature**: RAG Chatbot Integration
-**Branch**: `001-rag-chatbot-integration`
-**Generated**: 2025-12-09
-**Spec**: [RAG Chatbot Integration Spec](./spec.md)
-**Plan**: [Implementation Plan](./plan.md)
+# Tasks: RAG Chatbot Backend
+
+**Input**: Design documents from `/specs/001-rag-chatbot-integration/`
+**Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
+
+**Tests**: No explicit testing requirements in the feature specification.
+**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+
+## Format: `[ID] [P?] [Story] Description`
+
+- **[P]**: Can run in parallel (different files, no dependencies)
+- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
+- Include exact file paths in descriptions
+
+## Path Conventions
+
+- **Backend**: `backend/` at repository root
+- **FastAPI app**: `backend/fastapi_app.py`
+- **Agent backend**: `backend/agentic_backend.py`
+
+---
+
+## Phase 1: Setup (Shared Infrastructure)
+
+**Purpose**: Project initialization and basic structure
+
+- [X] T001 Create project structure with backend directory
+- [X] T002 Install required dependencies (FastAPI, OpenAI Agents SDK, Cohere, Qdrant, python-dotenv)
+- [ ] T003 [P] Configure linting and formatting tools
+
+---
+
+## Phase 2: Foundational (Blocking Prerequisites)
+
+**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
+
+**⚠️ CRITICAL**: No user story work can begin until this phase is complete
+
+- [X] T004 Create agentic_backend.py file with basic structure
+- [X] T005 [P] Load Environment Variables using `load_dotenv` of `dotenv` in agentic_backend.py
+- [X] T006 [P] Write Python code that begins by disabling tracing using the set_tracing_disabled function from the OpenAI Agents SDK by setting the disabled parameter to True. Then load the Gemini API key from the environment using os.getenv and store it in a variable named gemini_api_key. After that, initialize an asynchronous OpenAI-compatible provider using the AsyncOpenAI class from the OpenAI Agents SDK, passing the Gemini API key to the api_key parameter and setting the base_url to the Gemini-compatible endpoint at "https://generativelanguage.googleapis.com/v1beta/openai/". Finally, create a chat completion model instance using the OpenAIChatCompletionsModel class from the OpenAI Agents SDK, specifying "gemini-2.0-flash" as the model name and passing the previously created provider instance to the openai_client parameter. The code should be clean, direct, and focused on correctly configuring the Gemini model through the OpenAI Agents SDK in agentic_backend.py
+- [X] T007 [P] Write Python code that initializes a Cohere client by creating an instance of cohere.Client and passing the API key string as the constructor argument. After setting up the Cohere client, create a Qdrant connection by instantiating a QdrantClient object, providing the Qdrant URL through the url parameter and supplying the API key through the api_key parameter. The code should clearly establish both the Cohere client and the Qdrant client so they can be used later for embedding generation and vector search operations in agentic_backend.py
+- [X] T008 [P] Write a Python function named `get_embedding` that uses the Cohere Python client to generate an embedding vector using the Cohere Embed v3 model. The function should accept a text string as input and call the Cohere client's embed method using the model name "embed-english-v3.0" and the input_type set to "search_query." The function should pass the input text inside a list to the texts parameter. After receiving the response, the function should return only the first embedding from the response object. The structure should be clean, include a short docstring explaining that the function returns an embedding vector using Cohere Embed v3, and handle everything in a simple, readable way in agentic_backend.py
+- [X] T009 [P] Write a Python function decorated with the `@function_tool` decorator from the OpenAI Agents SDK. The function should be named `retrieve` and accept a single parameter called `query`. Inside the function, call an existing get_embedding function to generate an embedding for the query. Then perform a vector search using a Qdrant client instance named qdrant by calling its query_points method with the collection name "humanoid_ai_book," the generated embedding as the query vector, and a limit of 5 results. After receiving the search results, extract the "text" field from the payload of each returned point and return these extracted text strings as a list. The function should be concise, readable, and focused on retrieval based on embeddings in agentic_backend.py
+- [X] T010 [P] Write Python code that creates an instance of the Agent class from the OpenAI Agents SDK. The agent should be named "Assistant" and include a multi-line instruction string explaining that it is an AI tutor for the Physical AI & Humanoid Robotics textbook. The instructions must tell the agent to always call the retrieve tool first with the user's question, to answer only using the content returned by that tool, and to respond with "I don't know" if the relevant information is not present in the retrieved results. Pass the previously initialized model instance to the model parameter, and provide the retrieve function as the only entry in the tools list. The created agent should be cleanly structured and ready to be used by a runner in agentic_backend.py
+- [X] T011 [P] Write a Python function named `run_agent` that synchronously runs the previously created agent using the Runner.run_sync method from the OpenAI Agents SDK. The function should call Runner.run_sync by passing the agent instance as the first argument and providing a variable named INPUTFROMFASTAPI as the value of the input parameter, representing the incoming message from a FastAPI endpoint. The function should store the result returned by the runner in a variable and return that result. The implementation should be simple and focused solely on executing the agent with the incoming FastAPI input in agentic_backend.py
+- [X] T012 Create fastapi_app.py with basic FastAPI structure
+- [X] T013 [P] Add CORS middleware to FastAPI application in fastapi_app.py
+
+**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
+
+---
+
+## Phase 3: User Story 1 - Access Chatbot Widget (Priority: P1) 🎯 MVP
+
+**Goal**: Create a FastAPI which receives input from frontend and gives response by using `agentic_backend`'s function `run_agent`.
+
+**Independent Test**: Can be fully tested by submitting a query to the FastAPI endpoint and verifying it calls the agentic_backend's run_agent function and returns a response.
+
+### Implementation for User Story 1
+
+- [X] T014 [US1] Create a FastAPI which receives input from frontend and give response by using `agentic_backend`'s function `run_agent` in fastapi_app.py
+- [X] T015 [US1] Implement request/response validation models in fastapi_app.py
+- [X] T016 [US1] Add error handling for chat endpoint in fastapi_app.py
+- [X] T017 [US1] Implement health check endpoint in fastapi_app.py
+
+**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
+
+---
+
+## Phase 4: Polish & Cross-Cutting Concerns
+
+**Purpose**: Improvements that affect multiple user stories
+
+- [ ] T018 Add comprehensive logging to both backend files
+- [ ] T019 [P] Documentation updates in docs/
+- [ ] T020 Code cleanup and refactoring
+- [ ] T021 Performance optimization
+- [ ] T022 Security hardening
+- [ ] T023 Run quickstart.md validation
+
+---
+
+## Dependencies & Execution Order
+
+### Phase Dependencies
+
+- **Setup (Phase 1)**: No dependencies - can start immediately
+- **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
+- **User Stories (Phase 3+)**: All depend on Foundational phase completion
+  - User stories can then proceed in parallel (if staffed)
+  - Or sequentially in priority order (P1 → P2 → P3)
+- **Polish (Final Phase)**: Depends on all desired user stories being complete
+
+### User Story Dependencies
+
+- **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
+
+### Within Each User Story
+
+- Core implementation before integration
+- Story complete before moving to next priority
+
+### Parallel Opportunities
+
+- All Setup tasks marked [P] can run in parallel
+- All Foundational tasks marked [P] can run in parallel (within Phase 2)
+- Once Foundational phase completes, all user stories can start in parallel (if team capacity allows)
+- Different user stories can be worked on in parallel by different team members
+
+---
+
+## Parallel Example: Foundational Phase
+
+```bash
+# Launch all foundational tasks together:
+Task: "Load Environment Variables using load_dotenv of dotenv in agentic_backend.py"
+Task: "Configure OpenAI-compatible provider with Gemini API in agentic_backend.py"
+Task: "Initialize Cohere and Qdrant clients in agentic_backend.py"
+Task: "Implement get_embedding function using Cohere in agentic_backend.py"
+```
+
+---
 
 ## Implementation Strategy
 
-This feature implements a Retrieval-Augmented Generation (RAG) chatbot system that integrates with the Physical AI & Humanoid Robotics E-book frontend. The system consists of a React-based chatbot widget positioned at the bottom right of the website, with a backend powered by Cohere embeddings, Qdrant vector database, and Gemini 2.0 Flash model. The backend utilizes OpenAI Agents SDK Python to create an intelligent agent that retrieves context before answering, with responses streamed via FastAPI connectivity.
+### MVP First (User Story 1 Only)
 
-The implementation follows a phased approach:
-- **Phase 1**: Project setup and foundational components
-- **Phase 2**: User Story 1 (Access Chatbot Widget) - P1 priority
-- **Phase 3**: User Story 2 (Contextually Relevant Answers) - P1 priority
-- **Phase 4**: User Story 3 (Streaming Responses) - P2 priority
-- **Phase 5**: User Story 4 (Close Chat Interface) - P2 priority
-- **Phase 6**: Polish and cross-cutting concerns
+1. Complete Phase 1: Setup
+2. Complete Phase 2: Foundational (CRITICAL - blocks all stories)
+3. Complete Phase 3: User Story 1
+4. **STOP and VALIDATE**: Test User Story 1 independently
+5. Deploy/demo if ready
 
-**MVP Scope**: User Story 1 provides the minimum viable product with basic chat functionality.
+### Incremental Delivery
 
-## Dependencies
+1. Complete Setup + Foundational → Foundation ready
+2. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
 
-User stories must be completed in priority order (P1 before P2), but each story is designed to be independently testable and deliverable.
+### Parallel Team Strategy
 
-### User Story Completion Order
-1. User Story 1 (P1) - Access Chatbot Widget
-2. User Story 2 (P1) - Contextually Relevant Answers
-3. User Story 3 (P2) - Streaming Responses
-4. User Story 4 (P2) - Close Chat Interface
+With multiple developers:
 
-### Parallel Execution Examples
-- Within each user story phase, frontend and backend tasks can often be developed in parallel
-- Model definitions can be developed in parallel with service implementations
-- UI components can be developed in parallel with API endpoints
+1. Team completes Setup + Foundational together
+2. Once Foundational is done:
+   - Developer A: User Story 1
+3. Stories complete and integrate independently
 
-## Phase 1: Setup (Project Initialization)
+---
 
-### Goal
-Set up the foundational project structure for both frontend and backend components, following the two-file backend architecture.
+## Notes
 
-- [x] T001 Create backend directory structure per plan with two-file architecture (fastapi_app.py and agent_backend.py)
-- [x] T002 Create backend requirements.txt with FastAPI, Cohere, Qdrant, OpenAI Agents SDK, and other dependencies
-- [x] T003 Create frontend component directory structure per plan
-- [x] T004 Set up basic FastAPI application in backend/fastapi_app.py following the two-file architecture requirement
-- [x] T005 Create AI agent module in backend/agent_backend.py using OpenAI Agents SDK, following the two-file architecture requirement
-- [x] T006 Set up environment variables for API keys and service configurations
-
-## Phase 2: User Story 1 - Access Chatbot Widget (P1)
-
-### Story Goal
-A website visitor sees the "Ask me" button at the bottom right of the website and clicks it to open the chatbot interface. The user can then type a question and receive a helpful response based on the website's content.
-
-### Independent Test Criteria
-Can be fully tested by clicking the "Ask me" button and verifying the chat interface opens, then submitting a question and receiving a response that demonstrates the RAG functionality.
-
-### Implementation Tasks
-
-#### Frontend Components
-- [x] T007 [P] [US1] Create ChatButton component in website/src/components/ChatbotWidget/ChatButton.jsx with "Ask me" button styling
-- [x] T008 [P] [US1] Create ChatWindow component in website/src/components/ChatbotWidget/ChatWindow.jsx with basic chat interface
-- [x] T009 [P] [US1] Create Message component in website/src/components/ChatbotWidget/Message.jsx for displaying messages
-- [x] T010 [US1] Create main ChatbotWidget component in website/src/components/ChatbotWidget/ChatbotWidget.jsx with open/close functionality
-- [x] T011 [US1] Create CSS modules styling in website/src/components/ChatbotWidget/styles.module.css with fixed positioning at bottom right
-
-#### Frontend Functionality
-- [x] T012 [US1] Implement basic open/close functionality in ChatbotWidget component
-- [x] T013 [US1] Add position fixed at bottom right to chat widget
-- [x] T014 [US1] Create basic API service in website/src/services/apiService.js for backend communication
-
-#### Backend Models and Data Structures
-- [ ] T015 [P] [US1] Define chat models in backend/fastapi_app.py (User Query, Generated Response, Conversation Session)
-- [ ] T016 [P] [US1] Define embedding models in backend/agent_backend.py (Document Chunk, Knowledge Base Document)
-
-#### Backend Services and AI Logic
-- [ ] T017 [US1] Create basic session handling in backend/fastapi_app.py
-- [ ] T018 [US1] Create basic AI agent functionality in backend/agent_backend.py
-
-#### Backend API
-- [ ] T019 [US1] Create basic chat endpoint in backend/fastapi_app.py that returns placeholder responses
-- [ ] T020 [US1] Create health check endpoint in backend/fastapi_app.py
-- [ ] T021 [US1] Register API routes in FastAPI application in backend/fastapi_app.py
-
-#### Integration
-- [ ] T022 [US1] Integrate chat widget with basic API communication to backend/fastapi_app.py
-- [ ] T023 [US1] Test basic chat functionality with placeholder responses from backend/fastapi_app.py
-
-## Phase 3: User Story 2 - Get Contextually Relevant Answers (P1)
-
-### Story Goal
-A user asks a specific question about the website's content or services, and the system retrieves relevant information from the knowledge base before generating an accurate, contextual response.
-
-### Independent Test Criteria
-Can be tested by asking specific questions about documented content and verifying that responses reference or incorporate information from the relevant knowledge base documents.
-
-### Implementation Tasks
-
-#### Knowledge Base Processing
-- [ ] T024 [P] [US2] Create document ingestion pipeline for Physical AI content in backend/agent_backend.py
-- [ ] T025 [P] [US2] Implement chunking strategy for content segmentation in backend/agent_backend.py
-- [ ] T026 [US2] Create utility functions for document processing in backend/agent_backend.py
-
-#### Embedding Service
-- [ ] T027 [US2] Integrate Cohere API for text embedding generation in backend/agent_backend.py
-- [ ] T028 [US2] Implement embedding preprocessing and normalization functions in backend/agent_backend.py
-- [ ] T029 [US2] Create utility functions for embedding operations in backend/agent_backend.py
-
-#### Vector Database Integration
-- [ ] T030 [US2] Set up Qdrant vector database connection in backend/agent_backend.py
-- [ ] T031 [US2] Implement document indexing functions in vector database service in backend/agent_backend.py
-- [ ] T032 [US2] Implement retrieval functions in vector database service in backend/agent_backend.py
-- [ ] T033 [US2] Configure similarity search parameters and thresholds in backend/agent_backend.py
-
-#### RAG Service Implementation
-- [ ] T034 [US2] Implement query processing in backend/agent_backend.py
-- [ ] T035 [US2] Create vector search functionality to retrieve relevant chunks in backend/agent_backend.py
-- [ ] T036 [US2] Design context formatting for LLM consumption in backend/agent_backend.py
-- [ ] T037 [US2] Implement context retrieval requirement (must retrieve before answering) in backend/agent_backend.py
-
-#### LLM Service
-- [ ] T038 [US2] Integrate Gemini 2.0 Flash model in backend/agent_backend.py
-- [ ] T039 [US2] Implement response generation with context integration in backend/agent_backend.py
-- [ ] T040 [US2] Ensure responses are based on retrieved context in backend/agent_backend.py
-
-#### API Enhancement
-- [ ] T041 [US2] Update chat endpoint in backend/fastapi_app.py to use RAG pipeline instead of placeholder
-- [ ] T042 [US2] Add embeddings endpoint in backend/fastapi_app.py
-- [ ] T043 [US2] Test contextually relevant responses with sample queries from backend/agent_backend.py
-
-## Phase 4: User Story 3 - Experience Streaming Responses (P2)
-
-### Story Goal
-A user submits a question and receives the response in a streaming fashion, seeing the answer appear progressively rather than waiting for the entire response to be generated at once.
-
-### Independent Test Criteria
-Can be tested by submitting a query and observing that response text appears progressively rather than all at once.
-
-### Implementation Tasks
-
-#### Agent Implementation
-- [ ] T044 [US3] Create custom RAG agent using OpenAI Agents SDK in backend/agent_backend.py
-- [ ] T045 [US3] Implement context retrieval requirement in the agent in backend/agent_backend.py
-- [ ] T046 [US3] Design memory management for conversation history in agent in backend/agent_backend.py
-- [ ] T047 [US3] Create custom tools for RAG pipeline access in agent in backend/agent_backend.py
-
-#### Streaming Implementation
-- [ ] T048 [US3] Use Runner.run_streamed method for response streaming in backend/agent_backend.py
-- [ ] T049 [US3] Implement proper event handling for stream management in backend/agent_backend.py
-- [ ] T050 [US3] Create middleware for stream processing and formatting in backend/agent_backend.py
-
-#### Backend Streaming
-- [ ] T051 [US3] Update FastAPI in backend/fastapi_app.py to use StreamingResponse for server-sent events
-- [ ] T052 [US3] Implement proper connection management for streaming in backend/fastapi_app.py
-- [ ] T053 [US3] Handle client disconnections gracefully during streaming in backend/fastapi_app.py
-
-#### Frontend Streaming
-- [ ] T054 [US3] Update API service to handle streaming responses
-- [ ] T055 [US3] Implement streaming response display in chat interface
-- [ ] T056 [US3] Add typing indicators during response generation
-- [ ] T057 [US3] Test streaming functionality with progressive text display
-
-## Phase 5: User Story 4 - Close Chat Interface (P2)
-
-### Story Goal
-A user who has opened the chat interface can close it to return to browsing the website without the chat interface visible, while preserving their conversation history.
-
-### Independent Test Criteria
-Can be tested by opening the chat interface, then using the close functionality to hide it, and verifying it can be reopened to show the previous conversation.
-
-### Implementation Tasks
-
-#### Session Management Enhancement
-- [ ] T058 [US4] Enhance session handling in backend/fastapi_app.py to preserve conversation history across close/open cycles
-- [ ] T059 [US4] Implement session persistence mechanisms in backend/fastapi_app.py
-- [ ] T060 [US4] Design session cleanup and timeout handling in backend/fastapi_app.py
-
-#### Frontend State Management
-- [ ] T061 [US4] Implement conversation history management in component state
-- [ ] T062 [US4] Handle opening/closing of chat window with state preservation
-- [ ] T063 [US4] Preserve session across page navigation
-- [ ] T064 [US4] Create useChat hook in website/src/hooks/useChat.js for chat functionality
-
-#### UI/UX Enhancement
-- [ ] T065 [US4] Add smooth animations for open/close actions
-- [ ] T066 [US4] Ensure "Ask me" button remains visible when chat is closed
-- [ ] T067 [US4] Test conversation history preservation across close/open cycles
-
-## Phase 6: Polish & Cross-Cutting Concerns
-
-### Goal
-Finalize the implementation with error handling, testing, and optimization.
-
-#### Error Handling & Validation
-- [ ] T068 Implement response validation and filtering in backend/agent_backend.py
-- [ ] T069 Add content moderation tools to agent in backend/agent_backend.py
-- [ ] T070 Create fallback mechanisms for edge cases in backend/agent_backend.py
-- [ ] T071 Implement comprehensive error handling in FastAPI in backend/fastapi_app.py
-- [ ] T072 Add logging for debugging and monitoring in both backend files
-- [ ] T073 Create structured error responses for frontend in backend/fastapi_app.py
-
-#### Testing
-- [ ] T074 Write unit tests for backend modules (fastapi_app.py and agent_backend.py)
-- [ ] T075 Write integration tests for API endpoints in backend/fastapi_app.py
-- [ ] T076 Test frontend component functionality
-- [ ] T077 Validate RAG response accuracy from backend/agent_backend.py
-
-#### Performance Optimization
-- [ ] T078 Optimize embedding generation and search performance in backend/agent_backend.py
-- [ ] T079 Implement caching mechanisms in backend/fastapi_app.py
-- [ ] T080 Optimize streaming response performance in backend/agent_backend.py
-- [ ] T081 Test system with 100 concurrent users using the two-file architecture
-
-#### Documentation & Deployment
-- [ ] T082 Update quickstart guide in specs/001-rag-chatbot-integration/quickstart.md
-- [ ] T083 Create deployment scripts
-- [ ] T084 Finalize user and developer documentation
-
-#### Final Validation
-- [ ] T085 Validate all success criteria are met (response time, relevance, etc.)
-- [ ] T086 Test all edge cases from specification
-- [ ] T087 Perform end-to-end testing of all user stories
+- [P] tasks = different files, no dependencies
+- [Story] label maps task to specific user story for traceability
+- Each user story should be independently completable and testable
+- Verify tests fail before implementing
+- Commit after each task or logical group
+- Stop at any checkpoint to validate story independently
+- Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence

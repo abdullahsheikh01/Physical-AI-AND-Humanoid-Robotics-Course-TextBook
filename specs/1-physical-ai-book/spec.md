@@ -18,7 +18,7 @@
 ### Book 's content:
 The Book Content should structure like that:
 1. Why Physical AI Matters(Main Page):
-Humanoid robots are poised to excel in our human-centered world because they share our physical form and can be trained with abundant data from interacting in human environments. This represents a significant transition from AI models confined to digital environments to embodied intelligence that operates in physical space.
+0Humanoid robots are poised to excel in our human-centered world because they share our physical form and can be trained with abundant data from interacting in human environments. This represents a significant transition from AI models confined to digital environments to embodied intelligence that operates in physical space.
 2. Book Modules:
 #### Module 1: The Robotic Nervous System (ROS 2):
 - Focus: Middleware for robot control.
