@@ -3,6 +3,7 @@ Agentic backend for RAG Chatbot integration with Physical AI & Humanoid Robotics
 This module handles the AI agent logic, including Gemini model integration,
 Cohere embeddings, Qdrant vector search, and RAG functionality.
 """
+import asyncio
 import os
 from typing import List
 
@@ -18,7 +19,7 @@ from agents import function_tool
 load_dotenv()
 
 # Disable tracing for OpenAI Agents SDK
-os.environ["OPENAI_DISABLE_TRACING"] = "true"
+# os.environ["OPENAI_DISABLE_TRACING"] = "true"
 
 
 # Initialize OpenAI-compatible provider with Gemini API
@@ -56,10 +57,15 @@ qdrant_api_key = os.getenv("QDRANT_API_KEY")
 if not qdrant_url:
     raise ValueError("QDRANT_URL environment variable is required")
 
-qdrant = QdrantClient(
-      url=qdrant_url,
-      api_key=qdrant_api_key
-  )
+# Initialize Qdrant client with optional API key
+if qdrant_api_key:
+    qdrant = QdrantClient(
+        url=qdrant_url,
+        api_key=qdrant_api_key
+    )
+else:
+    # For local Qdrant instances, API key might not be required
+    qdrant = QdrantClient(url=qdrant_url)
 
 
 def get_embedding(text: str) -> List[float]:
@@ -91,24 +97,34 @@ def retrieve(query: str) -> List[str]:
     Returns:
         List of relevant text chunks
     """
-    # Generate embedding for the query
-    query_embedding = get_embedding(query)
+    try:
+        # Generate embedding for the query
+        query_embedding = get_embedding(query)
 
-    # Perform vector search in Qdrant
-    search_results = qdrant.query_points(
-        collection_name=os.getenv("QDRANT_COLLECTION_NAME"),
-        query=query_embedding,
-        limit=5
-    )
+        # Get collection name from environment
+        collection_name = os.getenv("QDRANT_COLLECTION_NAME")
+        if not collection_name:
+            raise ValueError("QDRANT_COLLECTION_NAME environment variable is required")
 
-    # Extract text from payload of each result
-    retrieved_texts = []
-    for result in search_results.points:
-        if "text" in result.payload:
-            retrieved_texts.append(result.payload["text"])
+        # Perform vector search in Qdrant
+        search_results = qdrant.search(
+            collection_name=collection_name,
+            query_vector=query_embedding,
+            limit=5
+        )
 
-    return retrieved_texts
+        # Extract text from payload of each result
+        return [result.payload["text"] for result in search_results]
+    except Exception as e:
+        print(f"Error in retrieve function: {str(e)}")
+        # Return empty list if there's an error, allowing the agent to handle it gracefully
+        return []
 
+
+# Validate required environment variables before creating the agent
+qdrant_collection_name = os.getenv("QDRANT_COLLECTION_NAME")
+if not qdrant_collection_name:
+    raise ValueError("QDRANT_COLLECTION_NAME environment variable is required")
 
 # Create the AI agent
 assistant_agent = Agent(
@@ -117,8 +133,7 @@ assistant_agent = Agent(
     You are an AI tutor for the Physical AI & Humanoid Robotics textbook.
     Always call the retrieve tool first with the user's question to get relevant context.
     Answer only using the content returned by the retrieve tool.
-    If the relevant information is not present in the retrieved results, respond with "I don't know".
-    Be helpful, accurate, and concise in your responses.
+    Be helpful, accurate, and concise in your responses and give responses.
     """,
     model="gpt-4o",
     tools=[retrieve],
@@ -144,3 +159,4 @@ async def run_agent(INPUTFROMFASTAPI: str) -> str:
         INPUTFROMFASTAPI
     )
     return result.final_output
+

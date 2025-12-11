@@ -72,10 +72,11 @@ async def chat_endpoint(request: ChatRequest):
     try:
         # Log the incoming request
         logger.info(f"Received chat request: {request.query[:50]}...")
-        print("I have Run!!!!")
+        print("I have Run!!!")
         
         # Call the agentic backend's run_agent function
         response = await run_agent(request.query)
+
 
         # Create and return the response
         return ChatResponse(

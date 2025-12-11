@@ -17,7 +17,7 @@ const config: Config = {
   trailingSlash: true,
 
   // Set the production url of your site here
-  url: 'https://physical-ai-and-humanoid-robotics-textbook-6601-pw0v70cno.vercel.app/',
+  url: 'https://physical-ai-and-humonoid-robotics-6601.vercel.app/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -67,6 +67,11 @@ const config: Config = {
         },
         theme: {
           customCss: './src/css/custom.css',
+        },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          filename: 'sitemap.xml',
         },
       } satisfies Preset.Options,
     ],

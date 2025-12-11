@@ -4,21 +4,30 @@ import apiService from '../services/apiService';
 const useChat = () => {
   // Initialize state with values from localStorage if available
   const [isOpen, setIsOpen] = useState(() => {
-    const savedOpen = localStorage.getItem('chatbotOpen');
-    return savedOpen ? JSON.parse(savedOpen) : false;
+    if (typeof window !== 'undefined') {
+      const savedOpen = localStorage.getItem('chatbotOpen');
+      return savedOpen ? JSON.parse(savedOpen) : false;
+    }
+    return false; // Default value during SSR
   });
 
   const [messages, setMessages] = useState(() => {
-    const savedMessages = localStorage.getItem('chatbotMessages');
-    return savedMessages ? JSON.parse(savedMessages) : [];
+    if (typeof window !== 'undefined') {
+      const savedMessages = localStorage.getItem('chatbotMessages');
+      return savedMessages ? JSON.parse(savedMessages) : [];
+    }
+    return []; // Default value during SSR
   });
 
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const [sessionId, setSessionId] = useState(() => {
-    const savedSessionId = localStorage.getItem('chatbotSessionId');
-    return savedSessionId || null;
+    if (typeof window !== 'undefined') {
+      const savedSessionId = localStorage.getItem('chatbotSessionId');
+      return savedSessionId || null;
+    }
+    return null; // Default value during SSR
   });
 
   const [streamedResponse, setStreamedResponse] = useState('');
@@ -26,15 +35,19 @@ const useChat = () => {
 
   // Save state to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('chatbotOpen', JSON.stringify(isOpen));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('chatbotOpen', JSON.stringify(isOpen));
+    }
   }, [isOpen]);
 
   useEffect(() => {
-    localStorage.setItem('chatbotMessages', JSON.stringify(messages));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('chatbotMessages', JSON.stringify(messages));
+    }
   }, [messages]);
 
   useEffect(() => {
-    if (sessionId) {
+    if (typeof window !== 'undefined' && sessionId) {
       localStorage.setItem('chatbotSessionId', sessionId);
     }
   }, [sessionId]);
@@ -123,8 +136,10 @@ const useChat = () => {
   const clearChat = () => {
     setMessages([]);
     setSessionId(null);
-    localStorage.removeItem('chatbotMessages');
-    localStorage.removeItem('chatbotSessionId');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('chatbotMessages');
+      localStorage.removeItem('chatbotSessionId');
+    }
   };
 
   return {

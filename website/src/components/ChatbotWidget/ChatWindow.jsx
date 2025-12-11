@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 import Message from './Message';
 
 const ChatWindow = ({ messages, onClose, onSendMessage, inputText, setInputText, isLoading, streamedResponse }) => {
+  const messagesEndRef = useRef(null);
+  const chatMessagesRef = useRef(null);
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       onSendMessage();
     }
   };
+
+  // Scroll to bottom whenever messages change or streamed response updates
+  useEffect(() => {
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
+  }, [messages, streamedResponse]);
 
   return (
     <div className={`${styles.chatWindow} ${styles.open}`}>
@@ -19,7 +29,7 @@ const ChatWindow = ({ messages, onClose, onSendMessage, inputText, setInputText,
         </button>
       </div>
 
-      <div className={styles.chatMessages}>
+      <div className={styles.chatMessages} ref={chatMessagesRef}>
         {messages.map((message, index) => (
           <Message key={index} message={message} />
         ))}
@@ -46,6 +56,7 @@ const ChatWindow = ({ messages, onClose, onSendMessage, inputText, setInputText,
             </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className={styles.chatInputArea}>

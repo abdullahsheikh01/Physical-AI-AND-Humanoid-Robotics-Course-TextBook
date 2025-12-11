@@ -29,7 +29,7 @@ export default {
     "experimental_router": "browser"
   },
   "trailingSlash": true,
-  "url": "https://physical-ai-and-humanoid-robotics-textbook-6601-pw0v70cno.vercel.app",
+  "url": "https://physical-ai-and-humonoid-robotics-6601.vercel.app",
   "baseUrl": "/",
   "organizationName": "your-org",
   "projectName": "physical-ai-humanoid-robotics-ebook",
@@ -68,6 +68,11 @@ export default {
         },
         "theme": {
           "customCss": "./src/css/custom.css"
+        },
+        "sitemap": {
+          "changefreq": "weekly",
+          "priority": 0.5,
+          "filename": "sitemap.xml"
         }
       }
     ]
