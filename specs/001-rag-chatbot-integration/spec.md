@@ -111,6 +111,7 @@ A user who has opened the chat interface can close it to return to browsing the 
 - **FR-013**: System MUST maintain conversation history during a session
 - **FR-014**: System MUST handle error conditions gracefully and provide user-friendly error messages
 - **FR-015**: System MUST support concurrent users without performance degradation
+- **FR-016**: System MUST transmit complete chat history in the format [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}] with each user query to maintain conversation context
 
 ### Backend Architecture Requirements
 
@@ -124,7 +125,7 @@ The backend MUST consist of exactly two Python files with a clear separation of 
 #### FastAPI API Handler Requirements
 
 - **FR-BE-001**: The FastAPI file MUST handle HTTP requests from the frontend chatbot widget
-- **FR-BE-002**: The FastAPI file MUST accept user queries via POST requests in JSON format with the structure: `{ "query": "user's question", "conversation_id": "optional session identifier" }`
+- **FR-BE-002**: The FastAPI file MUST accept user queries via POST requests in JSON format with the structure: `{ "query": "user's question", "conversation_id": "optional session identifier", "history": [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}] }`
 - **FR-BE-003**: The FastAPI file MUST import and dynamically call the AI agent from the separate agent module
 - **FR-BE-004**: The FastAPI file MUST return responses to the frontend in JSON format with the structure: `{ "response": "generated answer", "conversation_id": "session identifier", "status": "success|error" }`
 - **FR-BE-005**: The FastAPI file MUST handle asynchronous requests to support streaming responses where applicable
@@ -163,6 +164,7 @@ The backend MUST consist of exactly two Python files with a clear separation of 
 - **Retrieved Context Chunk**: A relevant segment of information retrieved from the knowledge base based on query similarity
 - **Generated Response**: The AI-generated answer created based on the user query and retrieved context
 - **Conversation Session**: The context of interaction between a user and the chatbot during a single engagement
+- **Chat History**: The structured format [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}] containing the complete conversation history transmitted with each query
 - **FastAPI Handler**: The HTTP request/response handler that processes frontend requests and returns JSON responses
 - **AI Agent**: The core logic module containing the LLM provider, embeddings, vector database connection, and response generation
 - **Environment Configuration**: The collection of API keys, service endpoints, and connection parameters loaded from environment variables
