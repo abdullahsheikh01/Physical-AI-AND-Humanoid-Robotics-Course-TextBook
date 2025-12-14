@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report:
-- Version change: 1.0.0 → 1.1.0
-- Modified principles: Added new principles for chatbot feature
-- Added sections: Chatbot Widget Component, Agentic Backend Logic, FastAPI Integration
+- Version change: 1.1.0 → 1.2.0
+- Modified principles: Added Chat History Persistence principle for chatbot feature
+- Added sections: Chat History Persistence
 - Removed sections: None
 - Templates requiring updates: ✅ updated - .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
 - Follow-up TODOs: None
@@ -48,14 +48,18 @@ The backend logic for the chatbot must utilize OpenAI's Agents SDK to implement 
 Both frontend and backend components of the chatbot feature must connect through FastAPI as the primary API framework. FastAPI must be used for all backend endpoints, providing type safety, automatic API documentation, and high performance. The API layer must implement proper authentication, rate limiting, and error handling for production readiness.
 <!-- Rationale: FastAPI provides excellent performance, automatic documentation, and type safety, making it ideal for connecting the chatbot frontend and backend components -->
 
+### Chat History Persistence
+The frontend chatbot widget must send the complete chat history to the FastAPI backend with each new message request. This ensures that the backend has full context of the conversation to provide coherent, contextually relevant responses. The frontend must maintain and transmit the entire conversation history including user messages and bot responses to enable proper contextual understanding by the agentic backend system.
+<!-- Rationale: Complete chat history transmission enables the backend to maintain conversation context and provide more intelligent, coherent responses based on the full interaction history -->
+
 ## Content Integrity and Plagiarism Prevention
 All content must be original work or properly attributed to original sources. Automated plagiarism detection tools must be used during content creation and updates. All technical claims, data, and concepts must be verified against authoritative sources in the field of Physical AI and Humanoid Robotics. Any reproduced content must include proper attribution and comply with copyright requirements.
 
 ## Development Workflow and Quality Gates
-All code changes must pass responsive design testing across multiple device sizes before merging. Content changes must undergo fact-checking validation. Styling changes must be verified to use only CSS Modules and not violate the Tailwind CSS constraint. All pull requests must include verification of compliance with the core principles before approval. For chatbot features, additional testing must include API endpoint validation, agent response accuracy, and integration testing between frontend and backend components.
+All code changes must pass responsive design testing across multiple device sizes before merging. Content changes must undergo fact-checking validation. Styling changes must be verified to use only CSS Modules and not violate the Tailwind CSS constraint. All pull requests must include verification of compliance with the core principles before approval. For chatbot features, additional testing must include API endpoint validation, agent response accuracy, and integration testing between frontend and backend components. Additionally, chat history persistence functionality must be validated to ensure complete conversation context is maintained.
 
 ## Governance
 
 All development and content creation must comply with this constitution. Any changes to the core principles require formal amendment procedures with stakeholder approval. Code reviews must verify compliance with all principles, particularly the styling constraints and technical requirements. The project team must use this constitution as the authoritative guide for all technical and content decisions. New features like the chatbot must undergo additional architectural review to ensure they align with the overall project goals and maintain system integrity.
 
-**Version**: 1.1.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-07
+**Version**: 1.2.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-14

@@ -140,7 +140,7 @@ assistant_agent = Agent(
 )
 
 
-async def run_agent(INPUTFROMFASTAPI: str) -> str:
+async def run_agent(INPUTFROMFASTAPI: str|list[dict]) -> str:
     """
     Synchronously run the previously created agent using the Runner.run_sync method
     from the OpenAI Agents SDK. The function calls Runner.run_sync by passing the
