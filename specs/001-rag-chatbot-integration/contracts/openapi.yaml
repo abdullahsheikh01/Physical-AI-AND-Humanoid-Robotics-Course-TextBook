@@ -1,18 +1,19 @@
 openapi: 3.0.0
 info:
   title: RAG Chatbot API
-  description: API for the RAG Chatbot integration with Physical AI & Humanoid Robotics E-book
+  description: API for the RAG (Retrieval-Augmented Generation) Chatbot Integration with Physical AI & Humanoid Robotics E-book
   version: 1.0.0
 servers:
   - url: http://localhost:8000
-    description: Development server
-  - url: https://api.yourdomain.com
-    description: Production server
+    description: Local development server
+  - url: https://physical-ai-and-humanoid-robotics-course-ha5u.onrender.com
+    description: Production server on Render
 
 paths:
-  /v1/chat:
+  /chat:
     post:
-      summary: Send a message to the chatbot and receive a streamed response
+      summary: Send a message to the chatbot and receive a response
+      description: Processes a user query with complete chat history and returns an AI-generated response based on the knowledge base
       requestBody:
         required: true
         content:
@@ -21,74 +22,13 @@ paths:
               $ref: '#/components/schemas/ChatRequest'
       responses:
         '200':
-          description: Streamed response from the chatbot
+          description: Successful response with AI-generated answer
           content:
-            text/event-stream:
+            application/json:
               schema:
-                type: string
-                format: binary
+                $ref: '#/components/schemas/ChatResponse'
         '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-      x-openai-isConsequential: false
-
-  /v1/chat/history:
-    get:
-      summary: Retrieve conversation history for a session
-      parameters:
-        - name: session_id
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: Conversation history
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ChatHistoryResponse'
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Session not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /v1/embeddings:
-    post:
-      summary: Generate embeddings for text content
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EmbeddingRequest'
-      responses:
-        '200':
-          description: Generated embeddings
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbeddingResponse'
-        '400':
-          description: Bad request
+          description: Bad request - invalid input parameters
           content:
             application/json:
               schema:
@@ -100,12 +40,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /v1/health:
+  /health:
     get:
       summary: Health check endpoint
+      description: Returns the health status of the service and its dependencies
       responses:
         '200':
-          description: Service is healthy
+          description: Health status of the service
           content:
             application/json:
               schema:
@@ -116,124 +57,125 @@ components:
     ChatRequest:
       type: object
       required:
-        - message
-        - session_id
+        - query
+        - history
       properties:
-        message:
+        query:
           type: string
-          description: The user's message/query
-          example: "What is Physical AI?"
-        session_id:
+          description: The user's question or input text
+          example: "What are the key principles of Physical AI?"
+        conversation_id:
           type: string
-          format: uuid
-          description: Unique identifier for the conversation session
-          example: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
-        stream:
-          type: boolean
-          description: Whether to stream the response (default: true)
-          default: true
-
-    ChatHistoryResponse:
-      type: object
-      properties:
-        session_id:
-          type: string
-          format: uuid
-          description: Unique identifier for the conversation session
-        messages:
+          description: Optional session identifier for conversation continuity
+          example: "sess_abc123xyz"
+        history:
           type: array
+          description: Complete chat history for context
           items:
-            $ref: '#/components/schemas/Message'
-        created_at:
-          type: string
-          format: date-time
-          description: When the session was created
-        updated_at:
-          type: string
-          format: date-time
-          description: When the session was last updated
+            type: object
+            required:
+              - role
+              - message
+            properties:
+              role:
+                type: string
+                enum: [user, assistant]
+                description: The role of the message sender
+              message:
+                type: string
+                description: The content of the message
+          example:
+            - role: "user"
+              message: "Hello"
+            - role: "assistant"
+              message: "Hello! How can I help you with Physical AI and Humanoid Robotics?"
+            - role: "user"
+              message: "What is Physical AI?"
 
-    Message:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Unique identifier for the message
-        sender_type:
-          type: string
-          enum: [user, agent]
-          description: Who sent the message
-        content:
-          type: string
-          description: The message content
-        timestamp:
-          type: string
-          format: date-time
-          description: When the message was sent
-        message_type:
-          type: string
-          enum: [query, response, system]
-          description: Type of message
-
-    EmbeddingRequest:
+    ChatResponse:
       type: object
       required:
-        - input
+        - response
+        - conversation_id
+        - status
       properties:
-        input:
+        response:
           type: string
-          description: Text to generate embeddings for
-          example: "Physical AI combines robotics with artificial intelligence"
-
-    EmbeddingResponse:
-      type: object
-      properties:
-        embeddings:
+          description: The AI-generated answer
+          example: "Physical AI differs from traditional AI by focusing on..."
+        conversation_id:
+          type: string
+          description: Session identifier
+          example: "sess_abc123xyz"
+        status:
+          type: string
+          enum: [success, error]
+          description: Status of the request
+          example: "success"
+        sources:
           type: array
+          description: Optional list of source documents used in the response
           items:
-            type: array
-            items:
-              type: number
-        model:
-          type: string
-          description: The model used for embedding generation
-        usage:
-          type: object
-          properties:
-            prompt_tokens:
-              type: integer
-            total_tokens:
-              type: integer
+            type: object
+            properties:
+              doc_id:
+                type: string
+                description: Document identifier
+              title:
+                type: string
+                description: Title of the source document
 
     ErrorResponse:
       type: object
+      required:
+        - error_code
+        - message
       properties:
-        error:
+        error_code:
+          type: string
+          description: Standardized error code
+          example: "CHAT_001"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Invalid query format"
+        details:
           type: object
-          properties:
-            code:
-              type: string
-              description: Error code
-            message:
-              type: string
-              description: Error message
-            details:
-              type: object
-              description: Additional error details
+          description: Additional error context (optional)
+          example:
+            field: "query"
+            reason: "Field is required"
 
     HealthResponse:
       type: object
+      required:
+        - status
+        - timestamp
+        - services
       properties:
         status:
           type: string
-          description: Health status of the service
+          enum: [healthy, unhealthy]
+          description: Overall health status
           example: "healthy"
         timestamp:
           type: string
           format: date-time
-          description: When the health check was performed
-        version:
-          type: string
-          description: API version
-          example: "1.0.0"
+          description: Timestamp of the health check
+          example: "2025-01-15T10:30:00Z"
+        services:
+          type: object
+          description: Status of external services
+          properties:
+            cohere:
+              type: string
+              enum: [connected, disconnected]
+              description: Cohere API connection status
+            qdrant:
+              type: string
+              enum: [connected, disconnected]
+              description: Qdrant database connection status
+            gemini:
+              type: string
+              enum: [connected, disconnected]
+              description: Gemini API connection status

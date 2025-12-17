@@ -43,7 +43,7 @@
 1. **Start the FastAPI server**
    ```bash
    cd backend
-   uvicorn src.main:app --reload --port 8000
+   uvicorn fastapi_app:app --reload --port 8000
    ```
 
 2. **Initialize the vector database**
@@ -66,17 +66,38 @@
 
 ### Chat Endpoint
 ```bash
-curl -X POST http://localhost:8000/v1/chat \
+# Local development
+curl -X POST http://localhost:8000/chat \
   -H "Content-Type: application/json" \
   -d '{
-    "message": "What is Physical AI?",
-    "session_id": "unique-session-id"
+    "query": "What is Physical AI?",
+    "conversation_id": "unique-session-id",
+    "history": [
+      {"role": "user", "message": "Hello"},
+      {"role": "assistant", "message": "Hello! How can I help you today?"}
+    ]
+  }'
+
+# Production (Render)
+curl -X POST https://physical-ai-and-humanoid-robotics-course-ha5u.onrender.com/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "What is Physical AI?",
+    "conversation_id": "unique-session-id",
+    "history": [
+      {"role": "user", "message": "Hello"},
+      {"role": "assistant", "message": "Hello! How can I help you today?"}
+    ]
   }'
 ```
 
 ### Health Check
 ```bash
-curl http://localhost:8000/v1/health
+# Local development
+curl http://localhost:8000/health
+
+# Production (Render)
+curl https://physical-ai-and-humanoid-robotics-course-ha5u.onrender.com/health
 ```
 
 ## Running Tests

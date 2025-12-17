@@ -8,11 +8,14 @@
   - `conversation_id`: string (optional) - Unique identifier for conversation continuity
   - `timestamp`: datetime - When the query was submitted
   - `user_id`: string (optional) - Identifier for the requesting user
+  - `history`: array (required) - Complete chat history in format [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}]
 
 - **Validation**:
   - Query must be 1-2000 characters
   - Conversation ID follows UUID format if provided
   - Timestamp is auto-generated
+  - History must follow [{"role":"user","message":"..."},{"role":"assistant","message":"..."}] format
+  - History array can have maximum 50 items
 
 ### Knowledge Base Document
 - **Fields**:
@@ -82,6 +85,7 @@
   - `query`: string (required) - User's question
   - `conversation_id`: string (optional) - Session identifier
   - `user_id`: string (optional) - User identifier
+  - `history`: array (required) - Complete chat history in format [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}]
 
 ### Response Models
 - **ChatResponse**:

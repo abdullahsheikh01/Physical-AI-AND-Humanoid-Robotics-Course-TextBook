@@ -7,30 +7,61 @@
 
 ## Summary
 
-Build a minimal backend for a frontend chatbot widget using a two-file architecture. The backend consists of a FastAPI application (fastapi_app.py) that exposes a /chat endpoint for accepting user queries and returning AI-generated responses, and an AI agent module (agent_backend.py) that implements the RAG functionality using OpenAI Agents SDK, Google Generative AI (Gemini 2.0 Flash), Cohere embeddings, and Qdrant vector database. The system will enable dynamic querying from the frontend and provide contextually relevant responses through retrieval-augmented generation.
+Implementation of a RAG (Retrieval-Augmented Generation) chatbot widget that integrates with the Physical AI & Humanoid Robotics e-book website. The solution consists of a React-based chatbot widget positioned at the bottom right of the website with an "Ask me" button, and a backend system using FastAPI, OpenAI Agents SDK, Cohere for embeddings, and Qdrant for vector storage. The backend follows a two-file architecture with fastapi_app.py handling API requests and agentic_backend.py containing the AI agent logic. The frontend sends complete chat history with each request to maintain conversation context.
 
 ## Technical Context
 
-**Language/Version**: Python 3.11+
-**Primary Dependencies**: FastAPI, OpenAI Agents SDK, Google Generative AI (Gemini), Cohere, Qdrant, Pydantic
-**Storage**: Qdrant vector database for embeddings, temporary session storage for conversations
-**Testing**: pytest for unit/integration tests
-**Target Platform**: Linux server (backend), Web browser (frontend integration with Docusaurus)
-**Project Type**: Web application (backend API serving frontend widget)
-**Performance Goals**: <5 seconds response time for 95% of queries, support 100 concurrent users
-**Constraints**: Must use two-file backend architecture (FastAPI handler + AI agent), follow Docusaurus integration patterns, use CSS Modules for styling (no Tailwind), ensure responsive design
+**Language/Version**: Python 3.11 (backend), JavaScript/ES6+ (frontend/Docusaurus)
+**Primary Dependencies**: FastAPI (backend API framework), OpenAI Agents SDK (AI agent logic), Cohere (embeddings), Qdrant (vector database), React (chatbot widget), Docusaurus (frontend framework)
+**Storage**: Qdrant vector database for embeddings, Docusaurus static site generation for frontend
+**Testing**: pytest (backend), Jest (frontend)
+**Target Platform**: Web application (frontend) running on Linux server (backend)
+**Project Type**: Web (frontend Docusaurus + backend API)
+**Performance Goals**: Response generation time under 5 seconds for 95% of queries, support 100 concurrent users
+**Constraints**: Must use CSS Modules for styling (no Tailwind), FastAPI for backend connectivity, OpenAI Agents SDK for agentic logic, complete chat history must be sent with each request
+**Scale/Scope**: Single-page RAG chatbot widget integrated with educational e-book, serving website visitors
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-1. **FastAPI Integration Compliance**: ✅ FastAPI is selected as the primary API framework as required by constitution (Section 48)
-2. **Agentic Backend Logic**: ✅ Using OpenAI Agents SDK with Gemini model as specified in constitution (Section 44)
-3. **Frontend Integration**: ✅ Chatbot widget will integrate with Docusaurus frontend as required (Section 40)
-4. **Styling Constraints**: ✅ CSS Modules will be used for styling, with no Tailwind CSS as mandated (Sections 28, 36)
-5. **Code Quality**: ✅ Following clean architecture with separation of concerns between API layer and AI logic
-6. **Responsive Design**: ✅ Backend will support responsive frontend widget that works across devices
-7. **Content Integrity**: ✅ AI responses will be grounded in verified knowledge base content
+### Compliance Verification
+
+**✅ Physical AI & Humanoid Robotics Book Frontend**:
+- Chatbot widget will be built as a React component that integrates with Docusaurus
+- Implementation will leverage Docusaurus's architecture patterns
+
+**✅ Styling Standards**:
+- Chatbot widget styling will use CSS Modules to comply with constitution
+- No Tailwind CSS will be used in the implementation
+
+**✅ Constraint Compliance**:
+- Will ensure no Tailwind CSS is used in the chatbot widget implementation
+- Only CSS Modules will be used for styling
+
+**✅ Chatbot Widget Component**:
+- Implementation will be React-based widget component
+- Will be responsive, accessible, and maintain consistent styling with existing design
+- Will provide intuitive interface for AI assistant functionality
+
+**✅ Agentic Backend Logic with OpenAI Agents SDK**:
+- Backend will utilize OpenAI's Agents SDK for intelligent responses
+- Will implement proper memory management and tool usage
+- Will handle queries related to Physical AI and Humanoid Robotics content
+
+**✅ FastAPI Integration**:
+- Both frontend and backend will connect through FastAPI as required
+- Will implement type safety, automatic API documentation, and high performance
+- Will include authentication, rate limiting, and error handling
+
+**✅ Chat History Persistence**:
+- Frontend will send complete chat history with each new message request
+- Backend will receive [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}] format
+- This ensures proper contextual understanding by the agentic backend system
+
+**✅ Content Integrity Standards**:
+- Responses will be grounded in the book's knowledge base through RAG
+- Will maintain accuracy and educational value of content
 
 ## Project Structure
 
@@ -48,29 +79,36 @@ specs/[###-feature]/
 
 ### Source Code (repository root)
 
-For the backend, we'll use a two-file architecture as specified:
-
 ```text
+# Web application with frontend Docusaurus + backend API
 backend/
-├── fastapi_app.py       # FastAPI application with /chat endpoint and CORS
-└── agent_backend.py     # AI agent with Gemini, Cohere, Qdrant integration
-```
+├── fastapi_app.py       # FastAPI API handler (handles HTTP requests from frontend)
+├── agentic_backend.py   # AI agent module (OpenAI Agents SDK, Cohere, Qdrant)
+├── requirements.txt     # Python dependencies
+└── tests/
+    ├── test_api.py      # API endpoint tests
+    └── test_agent.py    # Agent functionality tests
 
-For the frontend integration with Docusaurus:
-
-```text
 website/
 ├── src/
-│   └── components/
-│       └── ChatbotWidget/    # React component for the chatbot widget
-│           ├── ChatbotWidget.jsx
-│           ├── ChatbotWidget.module.css
-│           └── index.js
-└── static/
-    └── chatbot-assets/       # Static assets for the chatbot
+│   ├── components/
+│   │   └── ChatbotWidget/  # React component for the chatbot widget
+│   │       ├── ChatbotWidget.js
+│   │       ├── ChatbotWidget.module.css  # CSS Modules styling
+│   │       └── ChatHistory.js
+│   ├── services/
+│   │   ├── apiService.js  # API communication service
+│   │   └── chatService.js # Chat-specific business logic
+│   └── pages/
+└── docusaurus.config.js   # Docusaurus configuration
+
+# Existing book content
+specs/
+├── 1-physical-ai-book/    # Original book content
+└── 001-rag-chatbot-integration/  # This feature's specs
 ```
 
-**Structure Decision**: The backend follows the two-file architecture requirement with clear separation between API layer (fastapi_app.py) and AI logic (agent_backend.py). The frontend integrates with Docusaurus as required by the constitution.
+**Structure Decision**: Web application structure selected with separate backend and frontend components. The backend uses FastAPI with a two-file architecture (fastapi_app.py for API handling and agentic_backend.py for AI logic) as specified in the requirements. The frontend integrates with the existing Docusaurus website through a React-based chatbot widget component.
 
 ## Complexity Tracking
 

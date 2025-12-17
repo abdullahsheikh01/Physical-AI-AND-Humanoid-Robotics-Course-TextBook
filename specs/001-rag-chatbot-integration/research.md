@@ -33,11 +33,16 @@
 
 ## API Design Patterns
 
+### Two-File Architecture
+- **Decision**: Backend follows two-file architecture with clear separation of concerns
+- **Implementation**: fastapi_app.py handles HTTP requests and API endpoints, agentic_backend.py contains AI agent logic
+- **Rationale**: Maintains clean separation between HTTP handling and AI logic as specified in requirements
+
 ### Request/Response Format
-- **Decision**: JSON-based API with consistent structure
-- **Request**: `{"query": "user question", "conversation_id": "optional session id"}`
+- **Decision**: JSON-based API with consistent structure including complete chat history
+- **Request**: `{"query": "user question", "conversation_id": "optional session id", "history": [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}]}`
 - **Response**: `{"response": "AI answer", "conversation_id": "session id", "status": "success|error"}`
-- **Rationale**: Simple, flexible, and supports conversation continuity as required by spec
+- **Rationale**: Includes complete chat history with each request to maintain conversation context as required by FR-016 and the constitution's Chat History Persistence principle
 
 ### Error Handling Strategy
 - **Decision**: Comprehensive error handling with appropriate HTTP status codes
@@ -48,6 +53,12 @@
 - **Decision**: Use FastAPI's StreamingResponse for progressive answer delivery
 - **Rationale**: Meets requirement for streaming responses to enhance user experience
 - **Implementation**: Will use async generators to stream tokens from agent
+
+### Chat History Integration with Agent
+- **Decision**: Pass complete chat history to the agent to maintain conversation context
+- **Rationale**: Required by FR-016 and constitution to ensure the agent has full context for coherent responses
+- **Implementation**: The agentic_backend.py will receive the history array and use it to construct the agent's conversation context before generating responses
+- **Approach**: History will be converted to the format expected by the OpenAI Agents SDK for proper context management
 
 ### Retry and Circuit Breaker Patterns
 - **Decision**: Implement retry logic for external API calls with exponential backoff
