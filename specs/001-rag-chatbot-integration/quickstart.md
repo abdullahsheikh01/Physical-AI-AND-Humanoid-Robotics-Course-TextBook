@@ -73,8 +73,8 @@ curl -X POST http://localhost:8000/chat \
     "query": "What is Physical AI?",
     "conversation_id": "unique-session-id",
     "history": [
-      {"role": "user", "message": "Hello"},
-      {"role": "assistant", "message": "Hello! How can I help you today?"}
+      {"role": "user", "content": "Hello"},
+      {"role": "assistant", "content": "Hello! How can I help you today?"}
     ]
   }'
 
@@ -85,8 +85,8 @@ curl -X POST https://physical-ai-and-humanoid-robotics-course-ha5u.onrender.com/
     "query": "What is Physical AI?",
     "conversation_id": "unique-session-id",
     "history": [
-      {"role": "user", "message": "Hello"},
-      {"role": "assistant", "message": "Hello! How can I help you today?"}
+      {"role": "user", "content": "Hello"},
+      {"role": "assistant", "content": "Hello! How can I help you today?"}
     ]
   }'
 ```

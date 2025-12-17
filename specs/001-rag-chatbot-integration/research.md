@@ -40,7 +40,7 @@
 
 ### Request/Response Format
 - **Decision**: JSON-based API with consistent structure including complete chat history
-- **Request**: `{"query": "user question", "conversation_id": "optional session id", "history": [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}]}`
+- **Request**: `{"query": "user question", "conversation_id": "optional session id", "history": [{"role":"user","content":"user message"},{"role":"assistant","content":"assistant_response"}]}`
 - **Response**: `{"response": "AI answer", "conversation_id": "session id", "status": "success|error"}`
 - **Rationale**: Includes complete chat history with each request to maintain conversation context as required by FR-016 and the constitution's Chat History Persistence principle
 

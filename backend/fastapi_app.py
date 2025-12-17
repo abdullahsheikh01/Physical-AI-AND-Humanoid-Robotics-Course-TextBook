@@ -22,8 +22,9 @@ class ChatRequest(BaseModel):
     """
     Request model for chat endpoint.
     """
-    query: str|list[dict]
+    query: str
     conversation_id: Optional[str] = None
+    history: List[Dict[str, str]]  # Complete chat history in format [{"role":"user","content":"user message"},{"role":"assistant","content":"assistant_response"}]
 
 
 class ChatResponse(BaseModel):
@@ -73,9 +74,17 @@ async def chat_endpoint(request: ChatRequest):
         # Log the incoming request
         logger.info(f"Received chat request: {request.query[:50]}...")
         # print("I have Run!!!")
-        
-        # Call the agentic backend's run_agent function
-        response = await run_agent(request.query)
+
+        # Prepare the input for the agent with complete history
+        # Combine history and current query to maintain conversation context
+        agent_input = {
+            "query": request.query,
+            "history": request.history,
+            "conversation_id": request.conversation_id
+        }
+
+        # Call the agentic backend's run_agent function with history
+        response = await run_agent(agent_input)
 
 
         # Create and return the response

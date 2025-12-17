@@ -75,22 +75,22 @@ components:
             type: object
             required:
               - role
-              - message
+              - content
             properties:
               role:
                 type: string
                 enum: [user, assistant]
-                description: The role of the message sender
-              message:
+                description: The role of the content sender
+              content:
                 type: string
                 description: The content of the message
           example:
             - role: "user"
-              message: "Hello"
+              content: "Hello"
             - role: "assistant"
-              message: "Hello! How can I help you with Physical AI and Humanoid Robotics?"
+              content: "Hello! How can I help you with Physical AI and Humanoid Robotics?"
             - role: "user"
-              message: "What is Physical AI?"
+              content: "What is Physical AI?"
 
     ChatResponse:
       type: object

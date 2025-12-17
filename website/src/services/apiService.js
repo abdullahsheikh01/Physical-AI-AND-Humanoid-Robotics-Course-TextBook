@@ -10,8 +10,14 @@ class ApiService {
   }
 
   // Method to send a chat message and get a response
-  async sendMessage(query, sessionId = null) {
+  async sendMessage(query, sessionId = null, history = []) {
     try {
+      // Format history to the required format [{"role":"user","content":"..."}]
+      const formattedHistory = history.map(msg => ({
+        role: msg.sender === 'user' ? 'user' : 'assistant',
+        content: msg.text
+      }));
+
       const response = await fetch(`${this.baseUrl}/chat`, {
         method: 'POST',
         headers: {
@@ -19,7 +25,8 @@ class ApiService {
         },
         body: JSON.stringify({
           query,
-          conversation_id: sessionId
+          conversation_id: sessionId,
+          history: formattedHistory
         })
       });
 
@@ -36,12 +43,12 @@ class ApiService {
   }
 
   // Method to simulate streaming chat responses using the regular chat endpoint
-  async streamMessage(query, sessionId = null, onChunk) {
+  async streamMessage(query, sessionId = null, onChunk, history = []) {
     return new Promise(async (resolve, reject) => {
       try {
         // Since the backend doesn't support streaming, we'll call the regular endpoint
         // and simulate streaming by calling the onChunk callback with the full response
-        const response = await this.sendMessage(query, sessionId);
+        const response = await this.sendMessage(query, sessionId, history);
 
         if (response && response.response) {
           // Simulate streaming by sending the full response as one chunk

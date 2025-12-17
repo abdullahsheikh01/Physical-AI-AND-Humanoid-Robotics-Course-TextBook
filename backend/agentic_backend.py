@@ -3,16 +3,17 @@ Agentic backend for RAG Chatbot integration with Physical AI & Humanoid Robotics
 This module handles the AI agent logic, including Gemini model integration,
 Cohere embeddings, Qdrant vector search, and RAG functionality.
 """
-import asyncio
+
 import os
-from typing import List
+from typing import List, Dict, Any
 
 import cohere
 from dotenv import load_dotenv
 from openai import OpenAI
 from qdrant_client import QdrantClient
 from agents import Agent, Runner, OpenAIChatCompletionsModel
-from agents import function_tool
+from agents import function_tool,set_default_openai_api
+set_default_openai_api("chat_completions")
 
 
 # Load environment variables
@@ -140,23 +141,32 @@ assistant_agent = Agent(
 )
 
 
-async def run_agent(INPUTFROMFASTAPI: str|list[dict]) -> str:
+async def run_agent(INPUTFROMFASTAPI: Dict[str, Any]) -> str:
     """
-    Synchronously run the previously created agent using the Runner.run_sync method
-    from the OpenAI Agents SDK. The function calls Runner.run_sync by passing the
-    agent instance as the first argument and providing a variable named INPUTFROMFASTAPI
-    as the value of the input parameter, representing the incoming message from a FastAPI endpoint.
-    The function stores the result returned by the runner in a variable and returns that result.
+    Run the agent with the provided input which contains query, history, and conversation_id.
 
     Args:
-        INPUTFROMFASTAPI: The input message from the FastAPI endpoint
+        INPUTFROMFASTAPI: Dict containing 'query', 'history', and 'conversation_id'
 
     Returns:
         The result from the agent
     """
+    # Extract query and history from the input
+    query = INPUTFROMFASTAPI.get('query', '')
+    history = INPUTFROMFASTAPI.get('history', [])
+
+    # Combine history with current query to create full context
+    # Format as conversation history for the agent - use 'content' instead of 'message'
+    full_conversation = []
+    for item in history:
+        full_conversation.append({"role": item.get('role', ''), "content": item.get('content', '')})
+
+    # Add the current query as the latest user message
+    full_conversation.append({"role": "user", "content": query})
+    print(full_conversation)
     result = await Runner.run(
         assistant_agent,
-        INPUTFROMFASTAPI
+        full_conversation
     )
     return result.final_output
 

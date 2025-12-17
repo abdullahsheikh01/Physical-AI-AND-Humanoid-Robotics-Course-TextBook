@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import apiService from '../services/apiService';
+import { formatHistoryForAPI, validateHistoryFormat, limitHistoryLength, getHistoryFromStorage, saveHistoryToStorage } from '../utils/historyUtils';
 
 const useChat = () => {
   // Initialize state with values from localStorage if available
@@ -13,8 +14,7 @@ const useChat = () => {
 
   const [messages, setMessages] = useState(() => {
     if (typeof window !== 'undefined') {
-      const savedMessages = localStorage.getItem('chatbotMessages');
-      return savedMessages ? JSON.parse(savedMessages) : [];
+      return getHistoryFromStorage('chatbotMessages');
     }
     return []; // Default value during SSR
   });
@@ -42,7 +42,7 @@ const useChat = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('chatbotMessages', JSON.stringify(messages));
+      saveHistoryToStorage(messages, 'chatbotMessages');
     }
   }, [messages]);
 
@@ -76,14 +76,28 @@ const useChat = () => {
       timestamp: new Date().toISOString()
     };
 
-    setMessages(prev => [...prev, userMessage]);
+    // Create updated messages array with the new user message
+    const updatedMessages = [...messages, userMessage];
+
+    // Limit history length to prevent performance issues
+    const limitedMessages = limitHistoryLength(updatedMessages, 50);
+
+    setMessages(limitedMessages);
     setInputText('');
     setIsLoading(true);
     setStreamedResponse(''); // Clear any previous streamed response
     fullResponseRef.current = ''; // Reset the ref
 
     try {
-      // Try to use streaming API first
+      // Format history for API and validate it
+      const historyForAPI = formatHistoryForAPI(limitedMessages);
+      const isValid = validateHistoryFormat(historyForAPI);
+
+      if (!isValid) {
+        console.warn('Invalid history format detected');
+      }
+
+      // Try to use streaming API first, passing the history
       await apiService.streamMessage(
         inputText,
         currentSessionId,
@@ -91,7 +105,8 @@ const useChat = () => {
           // Update the streamed response progressively
           setStreamedResponse(prev => prev + chunk);
           fullResponseRef.current += chunk; // Also update the ref for later use
-        }
+        },
+        limitedMessages // Pass the current messages as history
       );
 
       // After streaming is complete, add the final response to messages
@@ -107,11 +122,19 @@ const useChat = () => {
       console.error('Error with streaming, falling back to regular API:', streamError);
 
       try {
-        // Fallback to regular API call
-        const response = await apiService.sendMessage(inputText, currentSessionId);
+        // Format history for API and validate it
+        const historyForAPI = formatHistoryForAPI(limitedMessages);
+        const isValid = validateHistoryFormat(historyForAPI);
+
+        if (!isValid) {
+          console.warn('Invalid history format detected');
+        }
+
+        // Fallback to regular API call, passing the history
+        const response = await apiService.sendMessage(inputText, currentSessionId, limitedMessages);
 
         const agentMessage = {
-          text: response.response.content,
+          text: response.response,
           sender: 'agent',
           timestamp: new Date().toISOString()
         };
