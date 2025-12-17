@@ -85,3 +85,4 @@ yarn-error.log*
 # Editor temporary files
 *.sublime-project
 *.sublime-workspace
+.vercel
