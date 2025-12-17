@@ -151,3 +151,53 @@
 - Retrieved context chunks link to knowledge base documents
 - Generated responses link to source documents used
 - Conversation sessions maintain query-response history
+
+## Frontend State Models (New for Delete History Feature)
+
+### Chat History Item (Frontend State)
+- **Fields**:
+  - `id`: string (required) - Unique identifier for the message
+  - `role`: string (required) - Either "user" or "assistant"
+  - `message`: string (required) - The content of the message
+  - `timestamp`: datetime (required) - When the message was created
+- **Validation**:
+  - Message must not be empty
+  - Role must be either "user" or "assistant"
+- **Note**: These items are stored in frontend state and cleared when "Delete History" is triggered
+
+### Frontend Conversation State
+- **Fields**:
+  - `sessionId`: string (optional) - Session identifier if applicable
+  - `history`: array[Chat History Item] (required) - The conversation history in frontend state
+  - `isHistoryDeleted`: boolean (required) - Flag indicating if history has been cleared
+  - `lastClearedAt`: datetime (optional) - When history was last cleared
+- **Validation**:
+  - History array follows [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}] format
+  - History array has max 50 items before deletion
+- **Note**: When "Delete History" is triggered, the history array is emptied in frontend state
+
+### Delete History Action (Frontend)
+- **Fields**:
+  - `actionId`: string (required) - Unique identifier for the delete action
+  - `sessionId`: string (optional) - Session where history was deleted
+  - `timestamp`: datetime (required) - When the deletion occurred
+  - `userId`: string (optional) - User identifier if available
+- **Validation**:
+  - Requires valid session context when available
+  - Timestamp is auto-generated
+- **Note**: This represents the frontend action of clearing history, not persisted but may be used for analytics
+
+## State Transition Models
+
+### History State Transitions
+1. **Initial State**: Frontend conversation state has empty history array
+2. **Message Added**: New Chat History Item added to frontend history array
+3. **History Deleted**: All items removed from frontend history array via Delete History action
+4. **New Message After Deletion**: New Chat History Item added to frontend history array (now empty)
+
+### Validation Rules for Delete History
+- Only allow deletion when chat widget is open and active
+- Frontend state must properly clear all history items from React state
+- UI must re-render to reflect cleared state after deletion
+- Maintain session context after deletion so new conversations can begin
+- Animation should provide visual feedback during the clearing action

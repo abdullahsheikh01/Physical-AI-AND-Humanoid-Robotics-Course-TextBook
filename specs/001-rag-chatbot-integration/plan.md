@@ -7,19 +7,19 @@
 
 ## Summary
 
-Implementation of a RAG (Retrieval-Augmented Generation) chatbot widget that integrates with the Physical AI & Humanoid Robotics e-book website. The solution consists of a React-based chatbot widget positioned at the bottom right of the website with an "Ask me" button, and a backend system using FastAPI, OpenAI Agents SDK, Cohere for embeddings, and Qdrant for vector storage. The backend follows a two-file architecture with fastapi_app.py handling API requests and agentic_backend.py containing the AI agent logic. The frontend sends complete chat history with each request to maintain conversation context.
+Implementation of a RAG (Retrieval-Augmented Generation) chatbot widget with Delete History functionality that integrates with the Physical AI & Humanoid Robotics e-book website. The solution consists of a React-based chatbot widget positioned at the bottom right of the website with an "Ask me" button, and a backend system using FastAPI, OpenAI Agents SDK, Cohere for embeddings, and Qdrant for vector storage. The backend follows a two-file architecture with fastapi_app.py handling API requests and agentic_backend.py containing the AI agent logic. The frontend sends complete chat history with each request to maintain conversation context and includes a "Delete History" button in the widget header that appears with a smooth fade-in animation when the widget opens and clears all conversation history from frontend state when clicked.
 
 ## Technical Context
 
 **Language/Version**: Python 3.11 (backend), JavaScript/ES6+ (frontend/Docusaurus)
 **Primary Dependencies**: FastAPI (backend API framework), OpenAI Agents SDK (AI agent logic), Cohere (embeddings), Qdrant (vector database), React (chatbot widget), Docusaurus (frontend framework)
-**Storage**: Qdrant vector database for embeddings, Docusaurus static site generation for frontend
+**Storage**: Qdrant vector database for embeddings, Docusaurus static site generation for frontend, frontend state management for chat history
 **Testing**: pytest (backend), Jest (frontend)
-**Target Platform**: Web application (frontend) running on Linux server (backend)
+**Target Platform**: Web application (frontend Docusaurus + backend API)
 **Project Type**: Web (frontend Docusaurus + backend API)
-**Performance Goals**: Response generation time under 5 seconds for 95% of queries, support 100 concurrent users
-**Constraints**: Must use CSS Modules for styling (no Tailwind), FastAPI for backend connectivity, OpenAI Agents SDK for agentic logic, complete chat history must be sent with each request
-**Scale/Scope**: Single-page RAG chatbot widget integrated with educational e-book, serving website visitors
+**Performance Goals**: Response generation time under 5 seconds for 95% of queries, support 100 concurrent users, chat history clearing within 0.5 seconds (SC-011)
+**Constraints**: Must use CSS Modules for styling (no Tailwind), FastAPI for backend connectivity, OpenAI Agents SDK for agentic logic, complete chat history must be sent with each request, Delete History button must appear with smooth fade-in animation
+**Scale/Scope**: Single-page RAG chatbot widget integrated with educational e-book, serving website visitors, includes Delete History functionality for conversation privacy and fresh starts
 
 ## Constitution Check
 
@@ -59,9 +59,11 @@ Implementation of a RAG (Retrieval-Augmented Generation) chatbot widget that int
 - Backend will receive [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}] format
 - This ensures proper contextual understanding by the agentic backend system
 
-**✅ Content Integrity Standards**:
-- Responses will be grounded in the book's knowledge base through RAG
-- Will maintain accuracy and educational value of content
+**✅ Delete History Feature Compliance**:
+- Delete History button will be implemented as a UI element in the chat widget header
+- Will clear frontend state without requiring backend changes
+- Will follow the same styling standards using CSS Modules
+- Will maintain the responsive and accessible design requirements
 
 ## Project Structure
 
@@ -95,7 +97,8 @@ website/
 │   │   └── ChatbotWidget/  # React component for the chatbot widget
 │   │       ├── ChatbotWidget.js
 │   │       ├── ChatbotWidget.module.css  # CSS Modules styling
-│   │       └── ChatHistory.js
+│   │       ├── ChatHistory.js
+│   │       └── DeleteHistoryButton.js    # New component for delete history functionality
 │   ├── services/
 │   │   ├── apiService.js  # API communication service
 │   │   └── chatService.js # Chat-specific business logic
@@ -108,7 +111,7 @@ specs/
 └── 001-rag-chatbot-integration/  # This feature's specs
 ```
 
-**Structure Decision**: Web application structure selected with separate backend and frontend components. The backend uses FastAPI with a two-file architecture (fastapi_app.py for API handling and agentic_backend.py for AI logic) as specified in the requirements. The frontend integrates with the existing Docusaurus website through a React-based chatbot widget component.
+**Structure Decision**: Web application structure selected with separate backend and frontend components. The backend uses FastAPI with a two-file architecture (fastapi_app.py for API handling and agentic_backend.py for AI logic) as specified in the requirements. The frontend integrates with the existing Docusaurus website through a React-based chatbot widget component that includes the Delete History functionality as a dedicated UI element.
 
 ## Complexity Tracking
 

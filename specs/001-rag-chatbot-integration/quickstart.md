@@ -57,10 +57,17 @@
 1. **Integrate the Chatbot Widget**
    - The chatbot widget is designed as a React component that can be integrated into the Docusaurus site
    - Add the ChatbotWidget component to your Docusaurus layout
+   - The widget includes a "Delete History" button in the header that appears with smooth fade-in animation
 
 2. **Configuration**
    - Update the API endpoint in the frontend service to point to your backend server
    - The default is configured to connect to http://localhost:8000
+
+3. **Delete History Feature**
+   - The "Delete History" button is located in the chat widget header
+   - When clicked, it clears all conversation history from frontend state
+   - The button appears with a smooth fade-in animation when the widget opens
+   - After deletion, users can start fresh conversations without previous context
 
 ## API Usage
 
