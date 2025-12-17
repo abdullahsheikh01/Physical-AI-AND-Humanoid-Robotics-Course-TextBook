@@ -23,9 +23,9 @@ load_dotenv()
 
 
 # Initialize OpenAI-compatible provider with Gemini API
-gemini_api_key = os.getenv("GEMINI_API_KEY")
-if not gemini_api_key:
-    raise ValueError("GEMINI_API_KEY environment variable is required")
+# gemini_api_key = os.getenv("GEMINI_API_KEY")
+# if not gemini_api_key:
+#     raise ValueError("GEMINI_API_KEY environment variable is required")
 
 # Initialize OpenAI client with Gemini-compatible endpoint
 # openai_client = OpenAI(
