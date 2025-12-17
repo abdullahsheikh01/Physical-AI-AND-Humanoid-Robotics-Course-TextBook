@@ -1,8 +1,8 @@
 // API service for chatbot communication
 // In Docusaurus, we can't use process.env, so we'll use a default or window-based approach
 const API_BASE_URL = typeof window !== 'undefined'
-  ? window.ENV?.REACT_APP_API_URL || 'http://localhost:8000'
-  : 'http://localhost:8000';
+  ? window.ENV?.REACT_APP_API_URL || 'https://physical-ai-and-humanoid-robotics-course-ha5u.onrender.com'
+  : 'https://physical-ai-and-humanoid-robotics-course-ha5u.onrender.com';
 
 class ApiService {
   constructor() {
