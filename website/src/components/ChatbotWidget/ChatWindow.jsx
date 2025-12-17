@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 import Message from './Message';
+import DeleteHistoryButton from './DeleteHistoryButton';
 
-const ChatWindow = ({ messages, onClose, onSendMessage, inputText, setInputText, isLoading, streamedResponse }) => {
+const ChatWindow = ({ messages, onClose, onSendMessage, onClearChat, inputText, setInputText, isLoading, streamedResponse }) => {
   const messagesEndRef = useRef(null);
   const chatMessagesRef = useRef(null);
 
@@ -24,9 +25,12 @@ const ChatWindow = ({ messages, onClose, onSendMessage, inputText, setInputText,
     <div className={`${styles.chatWindow} ${styles.open}`}>
       <div className={styles.chatHeader}>
         <span className={styles.chatTitle}>Physical AI & Robotics Assistant</span>
-        <button className={styles.closeButton} onClick={onClose} aria-label="Close chat">
-          ×
-        </button>
+        <div className={styles.headerActions}>
+          <DeleteHistoryButton onDeleteHistory={onClearChat} disabled={isLoading || messages.length === 0} />
+          <button className={styles.closeButton} onClick={onClose} aria-label="Close chat">
+            ×
+          </button>
+        </div>
       </div>
 
       <div className={styles.chatMessages} ref={chatMessagesRef}>

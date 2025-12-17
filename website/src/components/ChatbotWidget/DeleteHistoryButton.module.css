@@ -1,0 +1,58 @@
+.deleteHistoryButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #495057;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in forwards;
+}
+
+.deleteHistoryButton:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  color: #212529;
+}
+
+.deleteHistoryButton:active {
+  transform: scale(0.98);
+}
+
+.deleteHistoryButton.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f8f9fa;
+  border-color: #e9ecef;
+  color: #adb5bd;
+}
+
+.deleteIcon {
+  width: 14px;
+  height: 14px;
+  transition: color 0.2s ease;
+}
+
+.buttonText {
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.deleteHistoryButton[data-visible="true"] {
+  opacity: 1;
+}

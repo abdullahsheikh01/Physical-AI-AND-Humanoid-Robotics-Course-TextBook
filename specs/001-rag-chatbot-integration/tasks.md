@@ -29,7 +29,7 @@ description: "Task list for RAG Chatbot with Delete History Feature Implementati
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure with backend and website directories
+- [x] T001 Create project structure with backend and website directories
 - [ ] T002 Install required dependencies (FastAPI, React, Docusaurus, OpenAI Agents SDK, Cohere, Qdrant, python-dotenv)
 - [ ] T003 [P] Configure linting and formatting tools for both backend and frontend
 
@@ -141,15 +141,15 @@ description: "Task list for RAG Chatbot with Delete History Feature Implementati
 
 ### Implementation for User Story 5
 
-- [ ] T039 [US5] Create DeleteHistoryButton React component in website/src/components/ChatbotWidget/DeleteHistoryButton.js
-- [ ] T040 [P] [US5] Add the Delete History button to the chat widget header
-- [ ] T041 [P] [US5] Implement smooth fade-in animation for the Delete History button when widget opens
-- [ ] T042 [P] [US5] Add onClick handler to clear conversation history from frontend state
-- [ ] T043 [P] [US5] Implement visual feedback/confirmation when history is cleared
-- [ ] T044 [P] [US5] Ensure UI re-renders to reflect cleared history state
-- [ ] T045 [P] [US5] Verify that new messages start fresh without previous context
-- [ ] T046 [P] [US5] Handle edge case of deleting history during streaming responses
-- [ ] T047 [P] [US5] Add CSS Modules styling for DeleteHistoryButton in website/src/components/ChatbotWidget/DeleteHistoryButton.module.css
+- [x] T039 [US5] Create DeleteHistoryButton React component in website/src/components/ChatbotWidget/DeleteHistoryButton.js
+- [x] T040 [P] [US5] Add the Delete History button to the chat widget header
+- [x] T041 [P] [US5] Implement smooth fade-in animation for the Delete History button when widget opens
+- [x] T042 [P] [US5] Add onClick handler to clear conversation history from frontend state
+- [x] T043 [P] [US5] Implement visual feedback/confirmation when history is cleared
+- [x] T044 [P] [US5] Ensure UI re-renders to reflect cleared history state
+- [x] T045 [P] [US5] Verify that new messages start fresh without previous context
+- [x] T046 [P] [US5] Handle edge case of deleting history during streaming responses
+- [x] T047 [P] [US5] Add CSS Modules styling for DeleteHistoryButton in website/src/components/ChatbotWidget/DeleteHistoryButton.module.css
 
 **Checkpoint**: At this point, User Story 5 should be fully functional and testable independently
 

@@ -14,7 +14,8 @@ const ChatbotWidget = () => {
     streamedResponse,
     toggleChat,
     closeChat,
-    handleSendMessage
+    handleSendMessage,
+    clearChat
   } = useChat();
 
   return (
@@ -25,6 +26,7 @@ const ChatbotWidget = () => {
           messages={messages}
           onClose={closeChat}
           onSendMessage={handleSendMessage}
+          onClearChat={clearChat}
           inputText={inputText}
           setInputText={setInputText}
           isLoading={isLoading}
