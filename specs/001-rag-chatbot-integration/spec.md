@@ -79,6 +79,22 @@ A user who has opened the chat interface can close it to return to browsing the 
 
 ---
 
+### User Story 5 - Clear Chat History (Priority: P2)
+
+A user who wants to start a fresh conversation can click a "Delete History" button in the chat widget header to clear all previous conversation history stored in frontend state, with a smooth fade-in animation when the widget opens.
+
+**Why this priority**: This provides users with the ability to reset their conversation and start fresh without carrying over previous context, improving privacy and enabling new conversation threads.
+
+**Independent Test**: Can be tested by opening the chat interface, sending some messages, clicking the "Delete History" button, and verifying that all conversation history is cleared from the frontend display and state.
+
+**Acceptance Scenarios**:
+
+1. **Given** the chat interface is open, **When** the widget appears with a smooth fade-in animation, **Then** a "Delete History" button is visible in the widget header
+2. **Given** a user has sent multiple messages in the current session, **When** they click the "Delete History" button, **Then** all conversation history is cleared from the frontend state and UI
+3. **Given** the chat history has been deleted, **When** the user sends a new message, **Then** the conversation starts fresh without any previous context
+
+---
+
 ### Edge Cases
 
 - What happens when the knowledge base has no relevant information for a user's query?
@@ -86,6 +102,8 @@ A user who has opened the chat interface can close it to return to browsing the 
 - What occurs when the backend services are temporarily unavailable?
 - How does the system handle network interruptions during streaming responses?
 - What happens when a user submits a query in a language different from the knowledge base?
+- What happens when a user clicks "Delete History" button while a response is being streamed?
+- How does the system handle deletion of history when the chat interface is closed?
 
 ## Requirements *(mandatory)*
 
@@ -112,6 +130,9 @@ A user who has opened the chat interface can close it to return to browsing the 
 - **FR-014**: System MUST handle error conditions gracefully and provide user-friendly error messages
 - **FR-015**: System MUST support concurrent users without performance degradation
 - **FR-016**: System MUST transmit complete chat history in the format [{"role":"user","message":"user message"},{"role":"assistant","message":"assistant_response"}] with each user query to maintain conversation context
+- **FR-017**: System MUST display a "Delete History" button in the chat widget header that appears with a smooth fade-in animation when the widget opens
+- **FR-018**: System MUST clear all conversation history from frontend state when the "Delete History" button is clicked
+- **FR-019**: System MUST provide visual confirmation that chat history has been cleared from the UI
 
 ### Backend Architecture Requirements
 
@@ -187,3 +208,5 @@ The backend MUST consist of exactly two Python files with a clear separation of 
 - **SC-007**: 95% of user queries result in contextually relevant information being retrieved and used in responses
 - **SC-008**: Users can successfully close and reopen the chat interface while preserving their conversation history
 - **SC-009**: The streaming response feature provides visible text within 1 second of query submission
+- **SC-010**: 90% of users can successfully clear their chat history by clicking the "Delete History" button when needed
+- **SC-011**: Chat history is cleared from the frontend interface within 0.5 seconds after clicking the "Delete History" button
