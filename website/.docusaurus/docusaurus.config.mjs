@@ -29,7 +29,7 @@ export default {
     "experimental_router": "browser"
   },
   "trailingSlash": true,
-  "url": "https://physical-ai-humanoid-robotics-book.example.com",
+  "url": "https://physical-ai-and-humanoid-robotics-textbook-6601-pw0v70cno.vercel.app",
   "baseUrl": "/",
   "organizationName": "your-org",
   "projectName": "physical-ai-humanoid-robotics-ebook",

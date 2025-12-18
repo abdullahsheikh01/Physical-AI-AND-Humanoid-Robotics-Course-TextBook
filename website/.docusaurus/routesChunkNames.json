@@ -1,334 +1,377 @@
 {
-  "/404/-b69": {
-    "__comp": "9362049b",
+  "/__docusaurus/debug/-546": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
     "__context": {
-      "plugin": "a7456010"
+      "plugin": "plugin---docusaurus-debug-b-38-895"
+    }
+  },
+  "/__docusaurus/debug/config/-8a8": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-b-38-895"
+    }
+  },
+  "/__docusaurus/debug/content/-2da": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-b-38-895"
     },
-    "config": "5e9f5e1a"
+    "__props": "__props---docusaurus-debug-content-197-dc7"
+  },
+  "/__docusaurus/debug/globalData/-178": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-b-38-895"
+    }
+  },
+  "/__docusaurus/debug/metadata/-d6c": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-b-38-895"
+    }
+  },
+  "/__docusaurus/debug/registry/-6e3": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-b-38-895"
+    }
+  },
+  "/__docusaurus/debug/routes/-cab": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-b-38-895"
+    }
+  },
+  "/404/-b69": {
+    "__comp": "__comp---site-src-pages-404-tsx-936-282",
+    "__context": {
+      "plugin": "plugin---404-a-74-b30"
+    },
+    "config": "config---404-5-e-9-d33"
   },
   "/blog/-7dc": {
-    "__comp": "a6aa9e1f",
+    "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "sidebar": "814f3328",
+    "sidebar": "sidebar---blog-814-0c3",
     "items": [
       {
-        "content": "546d928e"
+        "content": "content---blog-546-6f2"
       }
     ],
-    "__props": "08af526d"
+    "__props": "__props---blog-08-a-0b8"
   },
   "/blog/2025/01/01/benefits-of-physical-ai-course/-b51": {
-    "__comp": "ccc49370",
+    "__comp": "__comp---theme-blog-post-pageccc-cab",
     "__context": {
       "data": {
-        "blogMetadata": "acecf23e"
+        "blogMetadata": "blogMetadata---blog-2025-01-01-benefits-of-physical-ai-course-ace-5c4"
       },
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "sidebar": "814f3328",
-    "content": "918491b5"
+    "sidebar": "sidebar---blog-814-0c3",
+    "content": "content---blog-2025-01-01-benefits-of-physical-ai-course-918-167"
   },
   "/blog/archive/-1d9": {
-    "__comp": "9e4087bc",
+    "__comp": "__comp---theme-blog-archive-page-9-e-4-1d8",
     "__context": {
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "__props": "dbfc4782"
+    "__props": "__props---blog-archive-dbf-bf3"
   },
   "/blog/authors/-347": {
-    "__comp": "621db11d",
+    "__comp": "__comp---theme-blog-pages-blog-authors-list-page-621-70c",
     "__context": {
       "data": {
-        "blogMetadata": "acecf23e"
+        "blogMetadata": "blogMetadata---blog-2025-01-01-benefits-of-physical-ai-course-ace-5c4"
       },
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "sidebar": "814f3328",
-    "__props": "dd04b75e"
+    "sidebar": "sidebar---blog-814-0c3",
+    "__props": "__props---blog-authors-dd-0-1b8"
   },
   "/blog/authors/physical-ai-team/-cce": {
-    "__comp": "33fc5bb8",
+    "__comp": "__comp---theme-blog-pages-blog-authors-posts-page-33-f-bd5",
     "__context": {
       "data": {
-        "blogMetadata": "acecf23e"
+        "blogMetadata": "blogMetadata---blog-2025-01-01-benefits-of-physical-ai-course-ace-5c4"
       },
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
     "items": [
       {
-        "content": "546d928e"
+        "content": "content---blog-546-6f2"
       }
     ],
-    "sidebar": "814f3328",
-    "__props": "65ad7f46"
+    "sidebar": "sidebar---blog-814-0c3",
+    "__props": "__props---blog-authors-physical-ai-team-65-a-2e1"
   },
   "/blog/tags/-e17": {
-    "__comp": "01a85c17",
+    "__comp": "__comp---theme-blog-tags-list-page-01-a-d0b",
     "__context": {
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "sidebar": "814f3328",
-    "__props": "2063472f"
+    "sidebar": "sidebar---blog-814-0c3",
+    "__props": "__props---blog-tags-206-de0"
   },
   "/blog/tags/ai/-5e6": {
-    "__comp": "6875c492",
+    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "sidebar": "814f3328",
+    "sidebar": "sidebar---blog-814-0c3",
     "items": [
       {
-        "content": "546d928e"
+        "content": "content---blog-546-6f2"
       }
     ],
-    "__props": "3f62788c"
+    "__props": "__props---blog-tags-ai-3-f-6-29c"
   },
   "/blog/tags/education/-065": {
-    "__comp": "6875c492",
+    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "sidebar": "814f3328",
+    "sidebar": "sidebar---blog-814-0c3",
     "items": [
       {
-        "content": "546d928e"
+        "content": "content---blog-546-6f2"
       }
     ],
-    "__props": "ebdee893"
+    "__props": "__props---blog-tags-education-ebd-4d6"
   },
   "/blog/tags/humanoid-robotics/-a45": {
-    "__comp": "6875c492",
+    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "sidebar": "814f3328",
+    "sidebar": "sidebar---blog-814-0c3",
     "items": [
       {
-        "content": "546d928e"
+        "content": "content---blog-546-6f2"
       }
     ],
-    "__props": "b9aa6dfa"
+    "__props": "__props---blog-tags-humanoid-robotics-b-9-a-d7c"
   },
   "/blog/tags/physical-ai/-54f": {
-    "__comp": "6875c492",
+    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "sidebar": "814f3328",
+    "sidebar": "sidebar---blog-814-0c3",
     "items": [
       {
-        "content": "546d928e"
+        "content": "content---blog-546-6f2"
       }
     ],
-    "__props": "596a5106"
+    "__props": "__props---blog-tags-physical-ai-596-0ca"
   },
   "/blog/tags/robotics/-fd0": {
-    "__comp": "6875c492",
+    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
-      "plugin": "36994c47"
+      "plugin": "plugin---blog-369-533"
     },
-    "sidebar": "814f3328",
+    "sidebar": "sidebar---blog-814-0c3",
     "items": [
       {
-        "content": "546d928e"
+        "content": "content---blog-546-6f2"
       }
     ],
-    "__props": "50cb57df"
+    "__props": "__props---blog-tags-robotics-50-c-881"
   },
   "/markdown-page/-54d": {
-    "__comp": "1f391b9e",
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
     "__context": {
-      "plugin": "a7456010"
+      "plugin": "plugin---404-a-74-b30"
     },
-    "content": "393be207"
+    "content": "content---markdown-page-393-038"
   },
   "/tags/-cc3": {
-    "__comp": "2ad6199f",
+    "__comp": "__comp---site-src-pages-tags-tsx-2-ad-e51",
     "__context": {
-      "plugin": "a7456010"
+      "plugin": "plugin---404-a-74-b30"
     },
-    "config": "5e9f5e1a"
+    "config": "config---404-5-e-9-d33"
   },
   "/docs/-48b": {
-    "__comp": "5e95c892",
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
-      "plugin": "aba21aa0"
+      "plugin": "plugin---docs-aba-4f5"
     }
   },
   "/docs/-206": {
-    "__comp": "a7bd4aaa",
-    "__props": "11b43341"
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "__props": "__props---docs-11-b-f70"
   },
   "/docs/-10a": {
-    "__comp": "a94703ab"
+    "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/docs/assessments/-2fa": {
-    "__comp": "17896441",
-    "content": "ce12a471"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-assessments-ce-1-b78"
   },
   "/docs/assessments/capstone-humanoid/-255": {
-    "__comp": "17896441",
-    "content": "b8d3cad1"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-assessments-capstone-humanoid-b-8-d-ee1"
   },
   "/docs/assessments/gazebo-simulation/-7e0": {
-    "__comp": "17896441",
-    "content": "54faf442"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-assessments-gazebo-simulation-54-f-50c"
   },
   "/docs/assessments/intro/-875": {
-    "__comp": "17896441",
-    "content": "f88ebff9"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-assessments-intro-f-88-6de"
   },
   "/docs/assessments/isaac-perception/-b62": {
-    "__comp": "17896441",
-    "content": "1f3bd436"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-assessments-isaac-perception-1-f-3-713"
   },
   "/docs/assessments/ros2-project/-2ed": {
-    "__comp": "17896441",
-    "content": "6edf206b"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-assessments-ros-2-project-6-ed-535"
   },
   "/docs/guidelines/content-creation-guidelines/-cd0": {
-    "__comp": "17896441",
-    "content": "864e37e4"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-guidelines-content-creation-guidelines-864-05c"
   },
   "/docs/intro/-e44": {
-    "__comp": "17896441",
-    "content": "0e384e19"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-intro-0-e-3-7e4"
   },
   "/docs/intro/why-physical-ai-matters/-4e0": {
-    "__comp": "17896441",
-    "content": "03638a61"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-intro-why-physical-ai-matters-036-2d1"
   },
   "/docs/module-1/-3dd": {
-    "__comp": "17896441",
-    "content": "51279860"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-1-512-6ba"
   },
   "/docs/module-1/hands-on-examples/-b4e": {
-    "__comp": "17896441",
-    "content": "ffc5f86d"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-1-hands-on-examples-ffc-afd"
   },
   "/docs/module-1/intro/-52e": {
-    "__comp": "17896441",
-    "content": "f2e56ae8"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-1-intro-f-2-e-3af"
   },
   "/docs/module-1/rclpy-bridge/-a97": {
-    "__comp": "17896441",
-    "content": "ae870b48"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-1-rclpy-bridge-ae-8-54d"
   },
   "/docs/module-1/ros2-nodes-topics-services/-55f": {
-    "__comp": "17896441",
-    "content": "ed9046f4"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-1-ros-2-nodes-topics-services-ed-9-76b"
   },
   "/docs/module-1/urdf-humanoids/-b4c": {
-    "__comp": "17896441",
-    "content": "aec09d9c"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-1-urdf-humanoids-aec-733"
   },
   "/docs/module-2/-ca2": {
-    "__comp": "17896441",
-    "content": "5ad232c4"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-2-5-ad-bc6"
   },
   "/docs/module-2/gazebo-physics-collisions/-b3e": {
-    "__comp": "17896441",
-    "content": "a6e9b8b9"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-2-gazebo-physics-collisions-a-6-e-372"
   },
   "/docs/module-2/intro/-cf1": {
-    "__comp": "17896441",
-    "content": "b993f916"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-2-intro-b-99-7b5"
   },
   "/docs/module-2/sensor-simulation/-924": {
-    "__comp": "17896441",
-    "content": "35099b4b"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-2-sensor-simulation-350-4a9"
   },
   "/docs/module-2/sim-to-real/-548": {
-    "__comp": "17896441",
-    "content": "be21df10"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-2-sim-to-real-be-2-964"
   },
   "/docs/module-2/unity-rendering-interaction/-4a8": {
-    "__comp": "17896441",
-    "content": "a0216584"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-2-unity-rendering-interaction-a-02-a20"
   },
   "/docs/module-3/-72b": {
-    "__comp": "17896441",
-    "content": "9b44c66f"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-3-9-b-4-f4c"
   },
   "/docs/module-3/ai-control/-273": {
-    "__comp": "17896441",
-    "content": "fd4420be"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-3-ai-control-fd-4-12b"
   },
   "/docs/module-3/intro/-529": {
-    "__comp": "17896441",
-    "content": "b97bc248"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-3-intro-b-97-3aa"
   },
   "/docs/module-3/isaac-ros/-06f": {
-    "__comp": "17896441",
-    "content": "d88abfa1"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-3-isaac-ros-d-88-e84"
   },
   "/docs/module-3/isaac-sim/-7a5": {
-    "__comp": "17896441",
-    "content": "d3b2bde7"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-3-isaac-sim-d-3-b-114"
   },
   "/docs/module-3/nav2-bipedal/-158": {
-    "__comp": "17896441",
-    "content": "2138851c"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-3-nav-2-bipedal-213-487"
   },
   "/docs/module-4/-c39": {
-    "__comp": "17896441",
-    "content": "c7dfbc38"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-4-c-7-d-d1e"
   },
   "/docs/module-4/capstone-project/-495": {
-    "__comp": "17896441",
-    "content": "e954d5e1"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-4-capstone-project-e-95-1a8"
   },
   "/docs/module-4/cognitive-planning/-ba2": {
-    "__comp": "17896441",
-    "content": "9f294c8a"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-4-cognitive-planning-9-f-2-181"
   },
   "/docs/module-4/intro/-b64": {
-    "__comp": "17896441",
-    "content": "10f982ef"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-4-intro-10-f-97b"
   },
   "/docs/module-4/multimodal-integration/-440": {
-    "__comp": "17896441",
-    "content": "bf856d93"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-4-multimodal-integration-bf-8-5b7"
   },
   "/docs/module-4/voice-to-action/-33a": {
-    "__comp": "17896441",
-    "content": "c872816f"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-4-voice-to-action-c-87-2ce"
   },
   "/docs/weekly-breakdown/-6e9": {
-    "__comp": "17896441",
-    "content": "7d7ec993"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-weekly-breakdown-7-d-7-421"
   },
   "/docs/weekly-breakdown/week-13/-649": {
-    "__comp": "17896441",
-    "content": "43965d8d"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-weekly-breakdown-week-13-439-d5c"
   },
   "/docs/weekly-breakdown/weeks-1-2/-7c2": {
-    "__comp": "17896441",
-    "content": "e22a7c13"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-weekly-breakdown-weeks-1-2-e-22-836"
   },
   "/docs/weekly-breakdown/weeks-11-12/-cb5": {
-    "__comp": "17896441",
-    "content": "fcfe6c78"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-weekly-breakdown-weeks-11-12-fcf-b42"
   },
   "/docs/weekly-breakdown/weeks-3-5/-3a8": {
-    "__comp": "17896441",
-    "content": "fbf3129e"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-weekly-breakdown-weeks-3-5-fbf-83f"
   },
   "/docs/weekly-breakdown/weeks-6-7/-347": {
-    "__comp": "17896441",
-    "content": "1b53a702"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-weekly-breakdown-weeks-6-7-1-b-5-c9c"
   },
   "/docs/weekly-breakdown/weeks-8-10/-16e": {
-    "__comp": "17896441",
-    "content": "44b0bb1c"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-weekly-breakdown-weeks-8-10-44-b-bd8"
   },
   "/-e5f": {
-    "__comp": "1df93b7f",
+    "__comp": "__comp---site-src-pages-index-tsx-1-df-d3e",
     "__context": {
-      "plugin": "a7456010"
+      "plugin": "plugin---404-a-74-b30"
     },
-    "config": "5e9f5e1a"
+    "config": "config---404-5-e-9-d33"
   }
 }
