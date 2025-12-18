@@ -109,15 +109,15 @@ export default [
   },
   {
     path: '/docs/',
-    component: ComponentCreator('/docs/', '48b'),
+    component: ComponentCreator('/docs/', 'e16'),
     routes: [
       {
         path: '/docs/',
-        component: ComponentCreator('/docs/', '206'),
+        component: ComponentCreator('/docs/', '7e1'),
         routes: [
           {
             path: '/docs/',
-            component: ComponentCreator('/docs/', '10a'),
+            component: ComponentCreator('/docs/', 'bf2'),
             routes: [
               {
                 path: '/docs/assessments/',
@@ -158,12 +158,6 @@ export default [
               {
                 path: '/docs/guidelines/content-creation-guidelines/',
                 component: ComponentCreator('/docs/guidelines/content-creation-guidelines/', 'cd0'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/docs/intro/',
-                component: ComponentCreator('/docs/intro/', 'e44'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

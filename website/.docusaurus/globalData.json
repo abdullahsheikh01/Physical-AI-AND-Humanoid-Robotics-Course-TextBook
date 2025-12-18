@@ -46,11 +46,6 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "intro",
-              "path": "/docs/intro",
-              "sidebar": "tutorialSidebar"
-            },
-            {
               "id": "intro/why-physical-ai-matters",
               "path": "/docs/intro/why-physical-ai-matters",
               "sidebar": "physicalAISidebar"

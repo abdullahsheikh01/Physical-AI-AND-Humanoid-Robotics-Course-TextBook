@@ -22,14 +22,14 @@ function NotFound() {
               <Link className="button button--primary button--lg margin-right--sm" to="/">
                 Back to Home
               </Link>
-              <Link className="button button--secondary button--lg" to="/docs/intro">
+              <Link className="button button--secondary button--lg" to="/docs/intro/why-physical-ai-matters">
                 Explore E-book
               </Link>
             </div>
             <div className={styles.sitemapLinks}>
               <h3>Popular Sections:</h3>
               <ul>
-                <li><Link to="/docs/intro">Introduction to Physical AI</Link></li>
+                <li><Link to="/docs/intro/why-physical-ai-matters">Introduction to Physical AI</Link></li>
                 <li><Link to="/docs/module-1">Module 1: The Robotic Nervous System (ROS 2)</Link></li>
                 <li><Link to="/docs/module-2">Module 2: The Digital Twin (Gazebo & Unity)</Link></li>
                 <li><Link to="/docs/module-3">Module 3: The AI-Robot Brain (NVIDIA Isaac™)</Link></li>

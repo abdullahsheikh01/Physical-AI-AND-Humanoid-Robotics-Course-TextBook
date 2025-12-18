@@ -194,17 +194,17 @@
     },
     "config": "config---404-5-e-9-d33"
   },
-  "/docs/-48b": {
+  "/docs/-e16": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---docs-aba-4f5"
     }
   },
-  "/docs/-206": {
+  "/docs/-7e1": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "__props": "__props---docs-11-b-f70"
   },
-  "/docs/-10a": {
+  "/docs/-bf2": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/docs/assessments/-2fa": {
@@ -234,10 +234,6 @@
   "/docs/guidelines/content-creation-guidelines/-cd0": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-guidelines-content-creation-guidelines-864-05c"
-  },
-  "/docs/intro/-e44": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---docs-intro-0-e-3-7e4"
   },
   "/docs/intro/why-physical-ai-matters/-4e0": {
     "__comp": "__comp---theme-doc-item-178-a40",

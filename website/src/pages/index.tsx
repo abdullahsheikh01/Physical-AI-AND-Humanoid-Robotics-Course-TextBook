@@ -20,7 +20,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
+            to="/docs/intro/why-physical-ai-matters">
             Start Learning - 13 Week Journey 🚀
           </Link>
           <Link
@@ -56,7 +56,7 @@ function HomepageHero() {
             <div className={styles.buttons}>
               <Link
                 className="button button--secondary button--lg"
-                to="/docs/intro">
+                to="/docs/intro/why-physical-ai-matters">
                 Start Learning
               </Link>
               <Link
@@ -189,7 +189,7 @@ function CallToAction() {
             </p>
             <Link
               className="button button--primary button--lg"
-              to="/docs/intro">
+              to="/docs/intro/why-physical-ai-matters">
               Begin Your Learning Journey
             </Link>
           </div>
