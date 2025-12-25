@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report:
-- Version change: 1.0.0 → 1.1.0
-- Modified principles: Added new principles for chatbot feature
-- Added sections: Chatbot Widget Component, Agentic Backend Logic, FastAPI Integration
+- Version change: 1.1.0 → 1.2.0
+- Modified principles: Added new principles for authentication standards
+- Added sections: Better-Auth User Management, Data Privacy Compliance, Session Management for Logout, Neon Serverless Postgres Integration with pg Pool
 - Removed sections: None
 - Templates requiring updates: ✅ updated - .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
 - Follow-up TODOs: None
@@ -48,14 +48,30 @@ The backend logic for the chatbot must utilize OpenAI's Agents SDK to implement 
 Both frontend and backend components of the chatbot feature must connect through FastAPI as the primary API framework. FastAPI must be used for all backend endpoints, providing type safety, automatic API documentation, and high performance. The API layer must implement proper authentication, rate limiting, and error handling for production readiness.
 <!-- Rationale: FastAPI provides excellent performance, automatic documentation, and type safety, making it ideal for connecting the chatbot frontend and backend components -->
 
+### Better-Auth User Management
+User authentication and management must be implemented using Better-Auth, a framework-agnostic authentication and authorization library for TypeScript. Better-Auth must be used for all user-related operations including registration, login, password management, and user profile management. The authentication system must support multiple authentication methods including email/password, social logins, and optional two-factor authentication.
+<!-- Rationale: Better-Auth provides a comprehensive, secure, and extensible authentication framework with built-in security features and plugin ecosystem -->
+
+### Data Privacy Compliance
+All user data handling must comply with applicable data privacy regulations including GDPR, CCPA, and other relevant privacy laws. User data must be encrypted at rest and in transit. The system must implement proper data retention policies, provide users with data export and deletion capabilities, and maintain detailed audit logs of data access and modifications. All authentication and user management operations must follow privacy-by-design principles.
+<!-- Rationale: Compliance with data privacy regulations is essential for protecting user information and maintaining trust in the educational platform -->
+
+### Session Management for Logout
+The authentication system must implement proper session management with secure logout functionality. Sessions must have appropriate expiration times and support both automatic and manual logout. The system must properly invalidate session tokens on logout and prevent session replay attacks. Long-lived sessions must be configurable with appropriate security measures.
+<!-- Rationale: Proper session management ensures user security and privacy by preventing unauthorized access to user accounts -->
+
+### Neon Serverless Postgres Integration with pg Pool
+Database operations must use Neon Serverless Postgres as the primary database solution with direct integration using pg Pool for connection management. The system must implement efficient connection pooling to handle concurrent database operations while maintaining low latency. Database queries must be properly parameterized to prevent SQL injection, and the connection pool must be configured with appropriate limits and timeouts for optimal performance.
+<!-- Rationale: Neon Serverless Postgres provides scalable, serverless database capabilities with automatic scaling, while pg Pool ensures efficient and secure database connection management -->
+
 ## Content Integrity and Plagiarism Prevention
 All content must be original work or properly attributed to original sources. Automated plagiarism detection tools must be used during content creation and updates. All technical claims, data, and concepts must be verified against authoritative sources in the field of Physical AI and Humanoid Robotics. Any reproduced content must include proper attribution and comply with copyright requirements.
 
 ## Development Workflow and Quality Gates
-All code changes must pass responsive design testing across multiple device sizes before merging. Content changes must undergo fact-checking validation. Styling changes must be verified to use only CSS Modules and not violate the Tailwind CSS constraint. All pull requests must include verification of compliance with the core principles before approval. For chatbot features, additional testing must include API endpoint validation, agent response accuracy, and integration testing between frontend and backend components.
+All code changes must pass responsive design testing across multiple device sizes before merging. Content changes must undergo fact-checking validation. Styling changes must be verified to use only CSS Modules and not violate the Tailwind CSS constraint. All pull requests must include verification of compliance with the core principles before approval. For chatbot features, additional testing must include API endpoint validation, agent response accuracy, and integration testing between frontend and backend components. For authentication features, additional testing must include security validation, user management workflows, and database integration testing.
 
 ## Governance
 
-All development and content creation must comply with this constitution. Any changes to the core principles require formal amendment procedures with stakeholder approval. Code reviews must verify compliance with all principles, particularly the styling constraints and technical requirements. The project team must use this constitution as the authoritative guide for all technical and content decisions. New features like the chatbot must undergo additional architectural review to ensure they align with the overall project goals and maintain system integrity.
+All development and content creation must comply with this constitution. Any changes to the core principles require formal amendment procedures with stakeholder approval. Code reviews must verify compliance with all principles, particularly the styling constraints and technical requirements. The project team must use this constitution as the authoritative guide for all technical and content decisions. New features like the chatbot must undergo additional architectural review to ensure they align with the overall project goals and maintain system integrity. Authentication-related features must undergo security review to ensure compliance with the Better-Auth and data privacy principles.
 
-**Version**: 1.1.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-07
+**Version**: 1.2.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-25
