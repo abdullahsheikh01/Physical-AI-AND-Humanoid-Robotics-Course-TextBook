@@ -1,0 +1,221 @@
+# API Contracts: User Authentication System
+
+## Authentication Endpoints
+
+### User Registration
+**POST** `/api/auth/sign-up/email`
+
+Register a new user with email and password.
+
+**Request Body**:
+```json
+{
+  "email": "string (valid email format)",
+  "password": "string (min 8 characters)",
+  "name": "string (optional)"
+}
+```
+
+**Response**:
+- `200 OK`: User successfully registered
+```json
+{
+  "user": {
+    "id": "string",
+    "email": "string",
+    "name": "string",
+    "createdAt": "timestamp"
+  },
+  "session": {
+    "id": "string",
+    "expiresAt": "timestamp"
+  }
+}
+```
+- `400 Bad Request`: Invalid input data
+- `409 Conflict`: Email already exists
+
+---
+
+### User Login
+**POST** `/api/auth/sign-in/email`
+
+Authenticate user with email and password.
+
+**Request Body**:
+```json
+{
+  "email": "string (valid email format)",
+  "password": "string"
+}
+```
+
+**Response**:
+- `200 OK`: Authentication successful
+```json
+{
+  "user": {
+    "id": "string",
+    "email": "string",
+    "name": "string"
+  },
+  "session": {
+    "id": "string",
+    "expiresAt": "timestamp"
+  }
+}
+```
+- `400 Bad Request`: Invalid input
+- `401 Unauthorized`: Invalid credentials
+
+---
+
+### OAuth Login/Registration
+**GET** `/api/auth/sign-in/oauth/:provider`
+
+Initiate OAuth flow with specified provider (google, github).
+
+**Path Parameters**:
+- `provider`: "google" or "github"
+
+**Response**:
+- `302 Found`: Redirect to OAuth provider
+
+---
+
+### OAuth Callback
+**GET** `/api/auth/callback/:provider`
+
+Handle OAuth callback from provider.
+
+**Path Parameters**:
+- `provider`: "google" or "github"
+
+**Query Parameters**:
+- `code`: Authorization code from provider
+- `state`: State parameter for security
+
+**Response**:
+- `302 Found`: Redirect to success page with session cookie
+
+---
+
+### User Logout
+**POST** `/api/auth/sign-out`
+
+Terminate current user session.
+
+**Headers**:
+- `Authorization`: Bearer token or session cookie
+
+**Response**:
+- `200 OK`: Successfully logged out
+```json
+{
+  "success": true
+}
+```
+- `401 Unauthorized`: Invalid or expired session
+
+---
+
+### Get Current User Session
+**GET** `/api/auth/session`
+
+Retrieve current user session information.
+
+**Headers**:
+- `Authorization`: Bearer token or session cookie
+
+**Response**:
+- `200 OK`: Session information
+```json
+{
+  "user": {
+    "id": "string",
+    "email": "string",
+    "name": "string",
+    "image": "string (optional)"
+  },
+  "session": {
+    "id": "string",
+    "expiresAt": "timestamp"
+  }
+}
+```
+- `401 Unauthorized`: Invalid or expired session
+
+---
+
+### Revoke All User Sessions
+**POST** `/api/auth/sessions/revoke-all`
+
+Revoke all active sessions for the current user.
+
+**Headers**:
+- `Authorization`: Bearer token or session cookie
+
+**Response**:
+- `200 OK`: All sessions revoked
+```json
+{
+  "success": true,
+  "revokedCount": "number"
+}
+```
+- `401 Unauthorized`: Invalid or expired session
+
+---
+
+### List User Sessions
+**GET** `/api/auth/sessions`
+
+List all active sessions for the current user.
+
+**Headers**:
+- `Authorization`: Bearer token or session cookie
+
+**Response**:
+- `200 OK`: List of active sessions
+```json
+[
+  {
+    "id": "string",
+    "createdAt": "timestamp",
+    "expiresAt": "timestamp",
+    "userAgent": "string (optional)",
+    "ipAddress": "string (optional)"
+  }
+]
+```
+- `401 Unauthorized`: Invalid or expired session
+
+---
+
+## Security Headers
+
+All authentication endpoints must include:
+- `X-Content-Type-Options: nosniff`
+- `X-Frame-Options: DENY`
+- `X-XSS-Protection: 1; mode=block`
+- `Strict-Transport-Security: max-age=31536000; includeSubDomains`
+
+## Rate Limiting
+
+All authentication endpoints are subject to rate limiting:
+- Login attempts: 5 attempts per 15 minutes per IP
+- Registration: 3 attempts per hour per IP
+- Password reset: 5 attempts per hour per email
+
+## Error Response Format
+
+All error responses follow this format:
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "details": "object (optional)"
+  }
+}
+```
